@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- DO NOT DELETE THIS FILE.-->
+<!-- MDK is using this file to identify this project as an MDK project. -->
+<mdk version="1.0.11">
+  <gamebinpath enabled="no">e:\program files (x86)\steam\SteamApps\common\SpaceEngineers\Bin64</gamebinpath>
+  <installpath>C:\Users\sdmui\AppData\Local\Microsoft\VisualStudio\15.0_6b11ad26\Extensions\df31m5by.iua</installpath>
+  <outputpath>C:\Users\sdmui\AppData\Roaming\SpaceEngineers\IngameScripts\local</outputpath>
+  <minify>no</minify>
+  <ignore>
+    <folder>mdk</folder>
+  </ignore>
+</mdk>
