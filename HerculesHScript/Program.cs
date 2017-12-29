@@ -52,7 +52,8 @@ namespace IngameScript
                 Echo("Hydrogen Level: " + lowH2WarningSystem.GasTanksManager.FilledRatio * 100 + "%");
                 lowH2WarningSystem.CheckLevels();
             }
-            else if ((updateSource & UpdateType.Terminal) != 0)
+            else if ((updateSource & UpdateType.Terminal) != 0 ||
+                (updateSource & UpdateType.Trigger) != 0)
             {
                 string[] words = argument.Split(' ');
 
@@ -67,7 +68,8 @@ namespace IngameScript
                 else if (words[0] == "transmit")
                 {
                     string message = argument.Substring("transmit ".Length);
-                    antenna.TransmitMessage(argument.Substring("transmit ".Length));
+                    Echo("Transmitting: " + message);
+                    antenna.TransmitMessage(message);
                 }
             }
         }

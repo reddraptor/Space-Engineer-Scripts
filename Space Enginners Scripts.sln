@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PressurizedAreaControllerTest", "AirLockController\PressurizedAreaControllerTest.csproj", "{7204BCA6-00FE-445F-AFB7-AB132D3AE2FA}"
 EndProject
@@ -19,8 +19,6 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GasTanksManager", "Shared\G
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "LowHydrogenWarningSystem", "Shared\LowHydrogenWarningSystem\LowHydrogenWarningSystem.shproj", "{C5A3FD23-F236-4C4E-AD1C-D3E10E76AAFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerculesHScript", "BlueprintScripts\HerculesHScript\HerculesHScript.csproj", "{B22A9986-8FA3-42FA-9545-F2744DB55C31}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "BlockListManager", "BlockListManager\BlockListManager.shproj", "{FFB82388-D35B-4993-8D29-432F284FF8D5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockListManagerTest", "BlockListManagerTest\BlockListManagerTest.csproj", "{E1F7DED5-EEE5-4709-8CB4-1609328D3CFD}"
@@ -37,8 +35,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test Projects", "Test Proje
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "StatusReporter", "IStatusReportable\StatusReporter.shproj", "{B02BED7B-11B7-46FC-85B9-B307F4BB71F6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntennaCommunicationTest", "AntennaCommunicationTest\AntennaCommunicationTest.csproj", "{14766CA3-082F-4470-ACBF-8FE6949E0567}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StationOperationsScript", "StationOperationsScript\StationOperationsScript.csproj", "{A3898FCA-0702-4CC3-B904-A90CA0DA2946}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerculesHScript", "HerculesHScript\HerculesHScript.csproj", "{6AA56553-46C1-4569-A3E3-6C2B29E349F6}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		IStatusReportable\IStatusReportable.projitems*{6aa56553-46c1-4569-a3e3-6c2b29e349f6}*SharedItemsImports = 4
+		Shared\AlertSystem\AlertSystem.projitems*{6aa56553-46c1-4569-a3e3-6c2b29e349f6}*SharedItemsImports = 4
+		Shared\GasTanksManager\GasTanksManager.projitems*{6aa56553-46c1-4569-a3e3-6c2b29e349f6}*SharedItemsImports = 4
+		Shared\LowHydrogenWarningSystem\LowHydrogenWarningSystem.projitems*{6aa56553-46c1-4569-a3e3-6c2b29e349f6}*SharedItemsImports = 4
+		StatusReport\StatusReport.projitems*{6aa56553-46c1-4569-a3e3-6c2b29e349f6}*SharedItemsImports = 4
 		IStatusReportable\IStatusReportable.projitems*{6c0c49d9-d2a6-4bbd-94a1-fdcfc411b535}*SharedItemsImports = 4
 		StatusReport\StatusReport.projitems*{6c0c49d9-d2a6-4bbd-94a1-fdcfc411b535}*SharedItemsImports = 4
 		BlockListManager\BlockListManager.projitems*{7204bca6-00fe-445f-afb7-ab132d3ae2fa}*SharedItemsImports = 4
@@ -47,16 +56,12 @@ Global
 		Shared\AlertSystem\AlertSystem.projitems*{7204bca6-00fe-445f-afb7-ab132d3ae2fa}*SharedItemsImports = 4
 		Shared\GasTanksManager\GasTanksManager.projitems*{7204bca6-00fe-445f-afb7-ab132d3ae2fa}*SharedItemsImports = 4
 		StatusReport\StatusReport.projitems*{7204bca6-00fe-445f-afb7-ab132d3ae2fa}*SharedItemsImports = 4
+		Shared\AlertSystem\AlertSystem.projitems*{82b195ce-a4ed-4421-b47a-e41214cd00a8}*SharedItemsImports = 4
 		PressurizedAreaController\PressurizedAreaController.projitems*{8d50cd5b-0008-49c8-89cc-4b4f3f4cdf91}*SharedItemsImports = 13
 		IStatusReportable\IStatusReportable.projitems*{a6b98eb8-ed09-490d-b950-89325256f1dc}*SharedItemsImports = 4
 		Shared\GasTanksManager\GasTanksManager.projitems*{a6b98eb8-ed09-490d-b950-89325256f1dc}*SharedItemsImports = 4
 		StatusReport\StatusReport.projitems*{a6b98eb8-ed09-490d-b950-89325256f1dc}*SharedItemsImports = 4
 		IStatusReportable\IStatusReportable.projitems*{b02bed7b-11b7-46fc-85b9-b307f4bb71f6}*SharedItemsImports = 13
-		IStatusReportable\IStatusReportable.projitems*{b22a9986-8fa3-42fa-9545-f2744db55c31}*SharedItemsImports = 4
-		Shared\AlertSystem\AlertSystem.projitems*{b22a9986-8fa3-42fa-9545-f2744db55c31}*SharedItemsImports = 4
-		Shared\GasTanksManager\GasTanksManager.projitems*{b22a9986-8fa3-42fa-9545-f2744db55c31}*SharedItemsImports = 4
-		Shared\LowHydrogenWarningSystem\LowHydrogenWarningSystem.projitems*{b22a9986-8fa3-42fa-9545-f2744db55c31}*SharedItemsImports = 4
-		StatusReport\StatusReport.projitems*{b22a9986-8fa3-42fa-9545-f2744db55c31}*SharedItemsImports = 4
 		IStatusReportable\IStatusReportable.projitems*{b477d08a-9e79-4e54-9104-28376342b02d}*SharedItemsImports = 4
 		Shared\AlertSystem\AlertSystem.projitems*{b477d08a-9e79-4e54-9104-28376342b02d}*SharedItemsImports = 4
 		Shared\GasTanksManager\GasTanksManager.projitems*{b477d08a-9e79-4e54-9104-28376342b02d}*SharedItemsImports = 4
@@ -110,13 +115,6 @@ Global
 		{A6B98EB8-ED09-490D-B950-89325256F1DC}.Release|Any CPU.Build.0 = Debug|x64
 		{A6B98EB8-ED09-490D-B950-89325256F1DC}.Release|x64.ActiveCfg = Debug|x64
 		{A6B98EB8-ED09-490D-B950-89325256F1DC}.Release|x64.Build.0 = Debug|x64
-		{B22A9986-8FA3-42FA-9545-F2744DB55C31}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{B22A9986-8FA3-42FA-9545-F2744DB55C31}.Debug|x64.ActiveCfg = Debug|x64
-		{B22A9986-8FA3-42FA-9545-F2744DB55C31}.Debug|x64.Build.0 = Debug|x64
-		{B22A9986-8FA3-42FA-9545-F2744DB55C31}.Release|Any CPU.ActiveCfg = Debug|x64
-		{B22A9986-8FA3-42FA-9545-F2744DB55C31}.Release|Any CPU.Build.0 = Debug|x64
-		{B22A9986-8FA3-42FA-9545-F2744DB55C31}.Release|x64.ActiveCfg = Debug|x64
-		{B22A9986-8FA3-42FA-9545-F2744DB55C31}.Release|x64.Build.0 = Debug|x64
 		{E1F7DED5-EEE5-4709-8CB4-1609328D3CFD}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{E1F7DED5-EEE5-4709-8CB4-1609328D3CFD}.Debug|x64.ActiveCfg = Debug|x64
 		{E1F7DED5-EEE5-4709-8CB4-1609328D3CFD}.Debug|x64.Build.0 = Debug|x64
@@ -131,6 +129,27 @@ Global
 		{6C0C49D9-D2A6-4BBD-94A1-FDCFC411B535}.Release|Any CPU.Build.0 = Debug|x64
 		{6C0C49D9-D2A6-4BBD-94A1-FDCFC411B535}.Release|x64.ActiveCfg = Debug|x64
 		{6C0C49D9-D2A6-4BBD-94A1-FDCFC411B535}.Release|x64.Build.0 = Debug|x64
+		{14766CA3-082F-4470-ACBF-8FE6949E0567}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{14766CA3-082F-4470-ACBF-8FE6949E0567}.Debug|x64.ActiveCfg = Debug|x64
+		{14766CA3-082F-4470-ACBF-8FE6949E0567}.Debug|x64.Build.0 = Debug|x64
+		{14766CA3-082F-4470-ACBF-8FE6949E0567}.Release|Any CPU.ActiveCfg = Debug|x64
+		{14766CA3-082F-4470-ACBF-8FE6949E0567}.Release|Any CPU.Build.0 = Debug|x64
+		{14766CA3-082F-4470-ACBF-8FE6949E0567}.Release|x64.ActiveCfg = Debug|x64
+		{14766CA3-082F-4470-ACBF-8FE6949E0567}.Release|x64.Build.0 = Debug|x64
+		{A3898FCA-0702-4CC3-B904-A90CA0DA2946}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{A3898FCA-0702-4CC3-B904-A90CA0DA2946}.Debug|x64.ActiveCfg = Debug|x64
+		{A3898FCA-0702-4CC3-B904-A90CA0DA2946}.Debug|x64.Build.0 = Debug|x64
+		{A3898FCA-0702-4CC3-B904-A90CA0DA2946}.Release|Any CPU.ActiveCfg = Debug|x64
+		{A3898FCA-0702-4CC3-B904-A90CA0DA2946}.Release|Any CPU.Build.0 = Debug|x64
+		{A3898FCA-0702-4CC3-B904-A90CA0DA2946}.Release|x64.ActiveCfg = Debug|x64
+		{A3898FCA-0702-4CC3-B904-A90CA0DA2946}.Release|x64.Build.0 = Debug|x64
+		{6AA56553-46C1-4569-A3E3-6C2B29E349F6}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{6AA56553-46C1-4569-A3E3-6C2B29E349F6}.Debug|x64.ActiveCfg = Debug|x64
+		{6AA56553-46C1-4569-A3E3-6C2B29E349F6}.Debug|x64.Build.0 = Debug|x64
+		{6AA56553-46C1-4569-A3E3-6C2B29E349F6}.Release|Any CPU.ActiveCfg = Debug|x64
+		{6AA56553-46C1-4569-A3E3-6C2B29E349F6}.Release|Any CPU.Build.0 = Debug|x64
+		{6AA56553-46C1-4569-A3E3-6C2B29E349F6}.Release|x64.ActiveCfg = Debug|x64
+		{6AA56553-46C1-4569-A3E3-6C2B29E349F6}.Release|x64.Build.0 = Debug|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -150,5 +169,9 @@ Global
 		{6C0C49D9-D2A6-4BBD-94A1-FDCFC411B535} = {F8557EE2-EB62-4B49-8048-A725FF6A813D}
 		{EE60E83E-1100-4063-9A34-1F1F6BC5627D} = {5EA3E0BD-29A0-4EF3-9AE7-F5363981E4AF}
 		{B02BED7B-11B7-46FC-85B9-B307F4BB71F6} = {5EA3E0BD-29A0-4EF3-9AE7-F5363981E4AF}
+		{14766CA3-082F-4470-ACBF-8FE6949E0567} = {F8557EE2-EB62-4B49-8048-A725FF6A813D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D4513608-A7B2-4E84-9C32-B3F6F08CF172}
 	EndGlobalSection
 EndGlobal
