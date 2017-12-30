@@ -25,7 +25,7 @@ namespace IngameScript
         string[] airVentToO2TankNames = {"Air Vent (TANK)"};
         string[] O2TankNames = {"Oxygen Tank"};
 
-        BlockListManager blockListManager;
+        BlockNameConverter blockListManager;
         StatusReport statusReport = new StatusReport();
 
         List<IMyDoor> exteriorDoorList = new List<IMyDoor>();
@@ -40,14 +40,14 @@ namespace IngameScript
 
         public Program()
         {
-            blockListManager = new BlockListManager(GridTerminalSystem);
+            blockListManager = new BlockNameConverter(GridTerminalSystem);
 
-            blockListManager.AppendBlocksWithNames(exteriorDoorNames, exteriorDoorList);
-            blockListManager.AppendBlocksFromGroupsWithNames(hangerDoorGroupNames, exteriorDoorList);
-            blockListManager.AppendBlocksWithNames(interiorDoorNames, interiorDoorList);
-            blockListManager.AppendBlocksWithNames(airVentToO2GenNames, airVentToO2GenList);
-            blockListManager.AppendBlocksWithNames(airVentToO2TankNames, airVentToO2TankList);
-            blockListManager.AppendBlocksWithNames(O2TankNames, o2TankList);
+            blockListManager.AppendBlocksFromCustomNames(exteriorDoorNames, exteriorDoorList);
+            blockListManager.AppendBlocksFromGroupNames(hangerDoorGroupNames, exteriorDoorList);
+            blockListManager.AppendBlocksFromCustomNames(interiorDoorNames, interiorDoorList);
+            blockListManager.AppendBlocksFromCustomNames(airVentToO2GenNames, airVentToO2GenList);
+            blockListManager.AppendBlocksFromCustomNames(airVentToO2TankNames, airVentToO2TankList);
+            blockListManager.AppendBlocksFromCustomNames(O2TankNames, o2TankList);
 
             gasTanksManager = new GasTanksManager(o2TankList);
             gasTanksManager.SetStatusReport(statusReport);

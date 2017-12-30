@@ -55,7 +55,6 @@ namespace IngameScript
                     {
                         enabled = false;
                         SetAlertObjects(false);
-
                     }
                 }
             }
@@ -96,11 +95,11 @@ namespace IngameScript
             protected abstract void Disable();
         }
 
-        public class SoundAlert : AlertObject
+        public class AlertSound : AlertObject
         {
             private IMySoundBlock soundBlock;
 
-            public SoundAlert(IMySoundBlock soundBlock)
+            public AlertSound(IMySoundBlock soundBlock)
             {
                 this.soundBlock = soundBlock;
             }
@@ -120,28 +119,56 @@ namespace IngameScript
             }
         }
 
-        public class TextAlert : AlertObject
+        public class AlertText : AlertObject
         {
-            private string alertText;
-            private string normalText;
-            private bool normalShowText;
+            public string alertText;
+            public float fontSize;
+            public Color fontColor;
+            public Color bgColor;
+
             private IMyTextPanel textPanelBlock;
 
-            public TextAlert(IMyTextPanel textPanelBlock, string alertText)
+            private bool normalShowText;
+            private string normalText;
+            private float normalFontSize;
+            private Color normalFontColor;
+            private Color normalBgColor;
+
+            public AlertText(IMyTextPanel textPanelBlock)
+            {
+                this.textPanelBlock = textPanelBlock;
+                alertText = "Alert!";
+                fontSize = 2f;
+                fontColor = Color.Cyan;
+                bgColor = Color.Red;
+            }
+
+            public AlertText(IMyTextPanel textPanelBlock, string alertText, float fontSize, Color fontColor, Color bgColor)
             {
                 this.textPanelBlock = textPanelBlock;
                 this.alertText = alertText;
+                this.fontSize = fontSize;
+                this.bgColor = bgColor;
+                this.fontColor = fontColor;
             }
 
             protected override void Enable()
             {
                 if (textPanelBlock != null)
                 {
-                    textPanelBlock.Enabled = true;
                     normalShowText = textPanelBlock.ShowText;
                     normalText = textPanelBlock.GetPublicText();
-                    textPanelBlock.ShowPublicTextOnScreen();
+                    normalFontSize = textPanelBlock.FontSize;
+                    normalFontColor = textPanelBlock.FontColor;
+                    normalBgColor = textPanelBlock.BackgroundColor;
+
                     textPanelBlock.WritePublicText(alertText);
+                    textPanelBlock.FontSize = fontSize;
+                    textPanelBlock.FontColor = fontColor;
+                    textPanelBlock.BackgroundColor = bgColor;
+
+                    textPanelBlock.Enabled = true;
+                    textPanelBlock.ShowPublicTextOnScreen();
                 }
             }
 
@@ -150,28 +177,75 @@ namespace IngameScript
                 if (textPanelBlock != null)
                 {
                     if (!normalShowText) textPanelBlock.ShowTextureOnScreen();
+
                     textPanelBlock.WritePublicText(normalText);
+                    textPanelBlock.FontSize = normalFontSize;
+                    textPanelBlock.FontColor = normalFontColor;
+                    textPanelBlock.BackgroundColor = normalBgColor;
                 }
             }
         }
 
-        public class LightAlert : AlertObject
+        public class AlertLight : AlertObject
         {
-            private IMyInteriorLight lightBlock;
+            public bool blink;
+            public Color color;
+            public float blinkIntervalSeconds = 0.5f;
+            public float blinkLength = 50f;
+            public float blinkOffset = 0f;
 
-            public LightAlert(IMyInteriorLight lightBlock)
+            private IMyInteriorLight lightBlock;
+            private bool normalEnabled;
+            private float normalBlinkInterval;
+            private float normalBlinkOffset;
+            private float normalBlinkLength;
+            private Color normalColor;
+
+            public AlertLight(IMyInteriorLight lightBlock)
             {
                 this.lightBlock = lightBlock;
+                color = Color.Red;
+                blink = true;
+            }
+
+            public AlertLight(IMyInteriorLight lightBlock, Color color, bool blink)
+            {
+                this.lightBlock = lightBlock;
+                this.color = color;
+                this.blink = blink;
             }
 
             protected override void Disable()
             {
-                if (lightBlock != null) lightBlock.Enabled = false;
+                if (lightBlock != null)
+                {
+                    if (!normalEnabled) lightBlock.Enabled = false;
+                    lightBlock.Color = normalColor;
+                    lightBlock.BlinkIntervalSeconds = normalBlinkInterval;
+                    lightBlock.BlinkLength = normalBlinkLength;
+                    lightBlock.BlinkOffset = normalBlinkOffset;
+                }
             }
 
             protected override void Enable()
             {
-                if (lightBlock != null) lightBlock.Enabled = true;
+                if (lightBlock != null)
+                {
+                    normalEnabled = lightBlock.Enabled;
+                    normalColor = lightBlock.Color;
+                    normalBlinkInterval = lightBlock.BlinkIntervalSeconds;
+                    normalBlinkLength = lightBlock.BlinkLength;
+                    normalBlinkOffset = lightBlock.BlinkOffset;
+
+                    if (!lightBlock.Enabled) lightBlock.Enabled = true;
+                    lightBlock.Color = color;
+                    if (blink)
+                    {
+                        lightBlock.BlinkIntervalSeconds = blinkIntervalSeconds;
+                        lightBlock.BlinkLength = blinkLength;
+                        lightBlock.BlinkOffset = blinkOffset;
+                    }
+                }
             }
         }
     }

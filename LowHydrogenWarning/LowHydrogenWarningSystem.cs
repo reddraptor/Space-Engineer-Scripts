@@ -40,9 +40,9 @@ namespace IngameScript
             {
                 gasTanksManager = new GasTanksManager(h2TankBlocks);
                 
-                AlertObject warningLight = new LightAlert(warningLightBlock);
-                AlertObject warningLCD = new TextAlert(warningLCDBlock, "Low H2!");
-                AlertObject warningSound = new SoundAlert(warningSoundBlock);
+                AlertObject warningLight = new AlertLight(warningLightBlock);
+                AlertObject warningLCD = new AlertText(warningLCDBlock, "Low H2!");
+                AlertObject warningSound = new AlertSound(warningSoundBlock);
 
                 listAlertObjects = new List<AlertObject> { warningLight, warningLCD, warningSound };
             }

@@ -24,7 +24,10 @@ namespace IngameScript
         /// </summary>
         public class PressurizedAreaController : StatusReporter
         {
-            public enum PressurizedAreaStatus { PRESSURIZED, DEPRESSURIZING, DEPRESSURIZED, PRESSURIZING, SECURING }
+            [Flags]public enum PressurizedAreaStatus {  NONE            = 0,
+                                                        PRESSURIZE      = 1 << 0,
+                                                        CYCLING         = 1 << 1,
+                                                        SECURING        = 1 << 2 }
 
             protected List<IMyDoor> listExteriorDoors;
             protected List<IMyDoor> listInteriorDoors;
@@ -34,7 +37,7 @@ namespace IngameScript
             protected GasTanksManager o2TanksManager;
             protected AlertSystemManager alertSystemManager;
 
-            protected PressurizedAreaStatus status = PressurizedAreaStatus.DEPRESSURIZED;
+            protected PressurizedAreaStatus status = PressurizedAreaStatus.NONE;
 
             /// <summary>
             /// Acceptable nearness to target pressures to complete a cycle.
@@ -146,16 +149,17 @@ namespace IngameScript
 
             public void Pressurize()
             {
-                if (status == PressurizedAreaStatus.PRESSURIZED || status == PressurizedAreaStatus.PRESSURIZING) return;
-                status = PressurizedAreaStatus.PRESSURIZING;
+                if (status.HasFlag(PressurizedAreaStatus.PRESSURIZE)) return;
+                status |= (PressurizedAreaStatus.PRESSURIZE | PressurizedAreaStatus.CYCLING | PressurizedAreaStatus.SECURING);
                 CheckStatus();
             }
 
             public void Depressurize()
 
             {
-                if (status == PressurizedAreaStatus.DEPRESSURIZED || status == PressurizedAreaStatus.DEPRESSURIZING) return;
-                status = PressurizedAreaStatus.DEPRESSURIZING;
+                if (!status.HasFlag(PressurizedAreaStatus.PRESSURIZE)) return;
+                status &= ~PressurizedAreaStatus.PRESSURIZE;
+                status |= (PressurizedAreaStatus.CYCLING | PressurizedAreaStatus.SECURING);
                 EnableVents(listVentsToO2Gens, false);
                 CheckStatus();
             }
@@ -166,7 +170,7 @@ namespace IngameScript
             /// </summary>
             public void CheckStatus() {
 
-                if (status == PressurizedAreaStatus.DEPRESSURIZING)
+                if (!status.HasFlag(PressurizedAreaStatus.PRESSURIZE) && status.HasFlag(PressurizedAreaStatus.CYCLING))
                 {
                     ReportItem("Securing Doors... ");
                     if (SecureDoors(listInteriorDoors) && SecureDoors(listExteriorDoors))
@@ -192,7 +196,7 @@ namespace IngameScript
                         }
                     }
                 }
-                else if (status == PressurizedAreaStatus.PRESSURIZING)
+                else if (status.HasFlag(PressurizedAreaStatus.PRESSURIZE | PressurizedAreaStatus.CYCLING))
                 {
                     ReportItem("Securing Doors... ");
                     if (SecureDoors(listInteriorDoors) && SecureDoors(listExteriorDoors))
@@ -228,7 +232,7 @@ namespace IngameScript
 
             protected void GoToPressurizedStatus()
             {
-                status = PressurizedAreaStatus.PRESSURIZED;
+                status &= ~PressurizedAreaStatus.CYCLING; 
                 EnableVents(listVentsToO2Gens);
                 OpenDoors(listInteriorDoors);
                 ReportItem("All vents enabled. Opening interior doors. Pressurized.");
@@ -236,7 +240,7 @@ namespace IngameScript
 
             protected void GoToDepressurizedStatus()
             {
-                status = PressurizedAreaStatus.DEPRESSURIZED;
+                status &= ~PressurizedAreaStatus.CYCLING;
                 OpenDoors(listExteriorDoors);
                 ReportItem("Opening exterior doors. Depressurized.");
             }

@@ -19,8 +19,8 @@ namespace IngameScript
     partial class Program : MyGridProgram
     {
         public string nameSoundBlock = "Sound Block";
-        public List<string> nameLightBlocks = new List<string>{ "Warning Light 1", "Warning Light 2" };
-        public string nameLCDPanel = ("LCD Panel");
+        public List<string> nameLightBlocks = new List<string>{ "Interior Light", "Interior Light 2" };
+        public string nameLCDPanel = ("Text panel");
 
         public string warningMessage = "Alert!";
         public string warningMessage2 = "Danger!";
@@ -49,11 +49,11 @@ namespace IngameScript
             };
             lcdPanel = (IMyTextPanel)GridTerminalSystem.GetBlockWithName(nameLCDPanel);
 
-            bigBadAlertLight = new AlertLight(lightBlocks[0]);
+            bigBadAlertLight = new AlertLight(lightBlocks[0], Color.Yellow, true);
             biggerBadderAlertLight = new AlertLight(lightBlocks[1]);
             bigBadAlertSound = new AlertSound(soundBlock);
-            bigBadAlertMessage = new AlertText(lcdPanel);
-            biggerBadderAlertMessage = new AlertText(lcdPanel);
+            bigBadAlertMessage = new AlertText(lcdPanel, warningMessage, 2f, Color.Blue, Color.Yellow);
+            biggerBadderAlertMessage = new AlertText(lcdPanel, warningMessage2, 3f, Color.Cyan, Color.Red);
             bigBadAlert = new Alert(new List<AlertObject> { bigBadAlertLight, bigBadAlertMessage, bigBadAlertSound });
             biggerBadderAlert = new Alert(new List<AlertObject> { biggerBadderAlertLight, bigBadAlertLight, biggerBadderAlertMessage, bigBadAlertSound });
 
