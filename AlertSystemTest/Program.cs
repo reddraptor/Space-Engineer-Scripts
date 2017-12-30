@@ -37,7 +37,7 @@ namespace IngameScript
         private Alert bigBadAlert;
         private Alert biggerBadderAlert;
 
-        private AlertSystemManager alertSystemManager;
+        private AlertSystemManager<int> alertSystemManager;
 
         public Program()
         {
@@ -57,7 +57,7 @@ namespace IngameScript
             bigBadAlert = new Alert(new List<AlertObject> { bigBadAlertLight, bigBadAlertMessage, bigBadAlertSound });
             biggerBadderAlert = new Alert(new List<AlertObject> { biggerBadderAlertLight, bigBadAlertLight, biggerBadderAlertMessage, bigBadAlertSound });
 
-            alertSystemManager = new AlertSystemManager(new Dictionary<int, Alert> { { 0, bigBadAlert }, { 1, biggerBadderAlert } });
+            alertSystemManager = new AlertSystemManager<int>(new Dictionary<int, Alert> { { 0, bigBadAlert }, { 1, biggerBadderAlert } });
         }
 
         public void Main(string argument, UpdateType updateSource)
