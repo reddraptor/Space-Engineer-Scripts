@@ -9,6 +9,6 @@
     <Import_RootNamespace>BlockListManager</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)BlockListManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BlockNameConverter.cs" />
   </ItemGroup>
 </Project>

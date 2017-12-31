@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6AA56553-46C1-4569-A3E3-6C2B29E349F6}</ProjectGuid>
+    <ProjectGuid>{6AE0B40B-F6AD-4882-AC90-6B2D86BEB86A}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>IngameScript</RootNamespace>
-    <AssemblyName>HerculesHScript</AssemblyName>
+    <AssemblyName>PressurizedAreaControllerTest</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -105,7 +105,8 @@
     <AdditionalFiles Include="thumb.png" />
     <AdditionalFiles Include="MDK\whitelist.cache" />
   </ItemGroup>
-  <Import Project="..\Shared\LowHydrogenWarningSystem\LowHydrogenWarningSystem.projitems" Label="Shared" />
+  <Import Project="..\BlockListManager\BlockListManager.projitems" Label="Shared" />
+  <Import Project="..\PressurizedAreaController\PressurizedAreaController.projitems" Label="Shared" />
   <Import Project="..\Shared\GasTanksManager\GasTanksManager.projitems" Label="Shared" />
   <Import Project="..\Shared\AlertSystem\AlertSystem.projitems" Label="Shared" />
   <Import Project="..\StatusReport\StatusReport.projitems" Label="Shared" />

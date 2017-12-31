@@ -21,21 +21,21 @@ namespace IngameScript
         /// <summary>
         /// Alert System Manager v1.0
         /// </summary>
-        public class AlertSystemManager
+        public class AlertSystemManager<keyType>
         {
-            private Dictionary<int, Alert> dictAlerts;
+            private Dictionary<keyType, Alert> dictAlerts;
 
-            public Dictionary<int, Alert> Alerts
+            public Dictionary<keyType, Alert> Alerts
             {
                 get { return dictAlerts; }
             }
 
             public AlertSystemManager()
             {
-                dictAlerts = new Dictionary<int, Alert>();
+                dictAlerts = new Dictionary<keyType, Alert>();
             }
 
-            public AlertSystemManager(Dictionary<int, Alert> dictionaryAlerts)
+            public AlertSystemManager(Dictionary<keyType, Alert> dictionaryAlerts)
             {
                 dictAlerts = dictionaryAlerts;
             }

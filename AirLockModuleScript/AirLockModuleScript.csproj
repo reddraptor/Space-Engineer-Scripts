@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6AA56553-46C1-4569-A3E3-6C2B29E349F6}</ProjectGuid>
+    <ProjectGuid>{D739D993-319E-4D2A-8001-285DEC8CBBA2}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>IngameScript</RootNamespace>
-    <AssemblyName>HerculesHScript</AssemblyName>
+    <AssemblyName>AirLockModuleScript</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -105,9 +105,10 @@
     <AdditionalFiles Include="thumb.png" />
     <AdditionalFiles Include="MDK\whitelist.cache" />
   </ItemGroup>
-  <Import Project="..\Shared\LowHydrogenWarningSystem\LowHydrogenWarningSystem.projitems" Label="Shared" />
-  <Import Project="..\Shared\GasTanksManager\GasTanksManager.projitems" Label="Shared" />
   <Import Project="..\Shared\AlertSystem\AlertSystem.projitems" Label="Shared" />
+  <Import Project="..\BlockListManager\BlockListManager.projitems" Label="Shared" />
+  <Import Project="..\Shared\GasTanksManager\GasTanksManager.projitems" Label="Shared" />
+  <Import Project="..\PressurizedAreaController\PressurizedAreaController.projitems" Label="Shared" />
   <Import Project="..\StatusReport\StatusReport.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">

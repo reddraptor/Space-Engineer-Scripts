@@ -24,7 +24,13 @@ namespace IngameScript
         /// </summary>
         public class PressurizedAreaController : StatusReporter
         {
-            public enum PressurizedAreaStatus { PRESSURIZED, DEPRESSURIZING, DEPRESSURIZED, PRESSURIZING, SECURING }
+            [Flags]public enum PressurizedAreaStatus {  NONE            = 0,
+                                                        PRESSURIZE      = 1 << 0,
+                                                        CYCLING         = 1 << 1,
+                                                        SECURING        = 1 << 2 }
+
+            public static int AlertStatusCount = 3;
+            public enum AlertStatus { NONE, CYCLING, DEPRESSURIZED }
 
             protected List<IMyDoor> listExteriorDoors;
             protected List<IMyDoor> listInteriorDoors;
@@ -32,9 +38,9 @@ namespace IngameScript
             protected List<IMyAirVent> listVentsToO2Gens;
 
             protected GasTanksManager o2TanksManager;
-            protected AlertSystemManager alertSystemManager;
+            protected AlertSystemManager<AlertStatus> alertSystemManager;
 
-            protected PressurizedAreaStatus status = PressurizedAreaStatus.DEPRESSURIZED;
+            protected PressurizedAreaStatus status = PressurizedAreaStatus.NONE;
 
             /// <summary>
             /// Acceptable nearness to target pressures to complete a cycle.
@@ -132,30 +138,41 @@ namespace IngameScript
             public PressurizedAreaController(
                 List<IMyDoor> listExteriorDoors, List<IMyDoor> listInteriorDoors,
                 List<IMyAirVent> listVentsToO2Tanks, List<IMyAirVent> listVentsToO2Gens,
-                GasTanksManager o2TanksManager = null, AlertSystemManager alertSystemManager = null, StatusReport statusReport = null)
+                GasTanksManager o2TanksManager = null, Dictionary<AlertStatus, Alert> alertDictionary = null, StatusReport statusReport = null)
             {
                 this.listExteriorDoors = listExteriorDoors;
                 this.listInteriorDoors = listInteriorDoors;
                 this.listVentsToO2Tanks = listVentsToO2Tanks;
                 this.listVentsToO2Gens = listVentsToO2Gens;
                 this.o2TanksManager = o2TanksManager;
-                this.alertSystemManager = alertSystemManager;
+                if (alertDictionary != null) alertSystemManager = new AlertSystemManager<AlertStatus>(alertDictionary);
                 SetStatusReport(statusReport);
                 Pressurize();
             }
 
             public void Pressurize()
             {
-                if (status == PressurizedAreaStatus.PRESSURIZED || status == PressurizedAreaStatus.PRESSURIZING) return;
-                status = PressurizedAreaStatus.PRESSURIZING;
+                if (status.HasFlag(PressurizedAreaStatus.PRESSURIZE)) return;
+                status |= (PressurizedAreaStatus.PRESSURIZE | PressurizedAreaStatus.CYCLING | PressurizedAreaStatus.SECURING);
+                if (alertSystemManager != null)
+                {
+                    alertSystemManager.DisableAlerts();
+                    alertSystemManager.Alerts[AlertStatus.CYCLING].Enabled = true;
+                }
                 CheckStatus();
             }
 
             public void Depressurize()
 
             {
-                if (status == PressurizedAreaStatus.DEPRESSURIZED || status == PressurizedAreaStatus.DEPRESSURIZING) return;
-                status = PressurizedAreaStatus.DEPRESSURIZING;
+                if (!status.HasFlag(PressurizedAreaStatus.PRESSURIZE)) return;
+                status &= ~PressurizedAreaStatus.PRESSURIZE;
+                status |= (PressurizedAreaStatus.CYCLING | PressurizedAreaStatus.SECURING);
+                if (alertSystemManager != null)
+                {
+                    alertSystemManager.DisableAlerts();
+                    alertSystemManager.Alerts[AlertStatus.CYCLING].Enabled = true;
+                }
                 EnableVents(listVentsToO2Gens, false);
                 CheckStatus();
             }
@@ -166,7 +183,7 @@ namespace IngameScript
             /// </summary>
             public void CheckStatus() {
 
-                if (status == PressurizedAreaStatus.DEPRESSURIZING)
+                if (!status.HasFlag(PressurizedAreaStatus.PRESSURIZE) && status.HasFlag(PressurizedAreaStatus.CYCLING))
                 {
                     ReportItem("Securing Doors... ");
                     if (SecureDoors(listInteriorDoors) && SecureDoors(listExteriorDoors))
@@ -192,7 +209,7 @@ namespace IngameScript
                         }
                     }
                 }
-                else if (status == PressurizedAreaStatus.PRESSURIZING)
+                else if (status.HasFlag(PressurizedAreaStatus.PRESSURIZE | PressurizedAreaStatus.CYCLING))
                 {
                     ReportItem("Securing Doors... ");
                     if (SecureDoors(listInteriorDoors) && SecureDoors(listExteriorDoors))
@@ -228,7 +245,12 @@ namespace IngameScript
 
             protected void GoToPressurizedStatus()
             {
-                status = PressurizedAreaStatus.PRESSURIZED;
+                status &= ~PressurizedAreaStatus.CYCLING;
+                if (alertSystemManager != null)
+                {
+                    alertSystemManager.DisableAlerts();
+                    alertSystemManager.Alerts[AlertStatus.NONE].Enabled = true;
+                }
                 EnableVents(listVentsToO2Gens);
                 OpenDoors(listInteriorDoors);
                 ReportItem("All vents enabled. Opening interior doors. Pressurized.");
@@ -236,7 +258,12 @@ namespace IngameScript
 
             protected void GoToDepressurizedStatus()
             {
-                status = PressurizedAreaStatus.DEPRESSURIZED;
+                status &= ~PressurizedAreaStatus.CYCLING;
+                if (alertSystemManager != null)
+                {
+                    alertSystemManager.DisableAlerts();
+                    alertSystemManager.Alerts[AlertStatus.DEPRESSURIZED].Enabled = true;
+                }
                 OpenDoors(listExteriorDoors);
                 ReportItem("Opening exterior doors. Depressurized.");
             }

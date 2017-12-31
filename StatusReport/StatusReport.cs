@@ -22,12 +22,13 @@ namespace IngameScript
         {
             public enum Type { TYPICAL, WARNING, ALERT, ERROR }
 
-            public int Length
+            public int ReportCount
             {
                 get { return itemList.Count; }
             }
 
-            public int maxLength = 30;
+            public int maxReports = 30;
+            public int maxCharsPerLine = 40;
 
             private List<Item> itemList = new List<Item>();
 
@@ -54,8 +55,29 @@ namespace IngameScript
 
             public void AddItem(string reportText, Type type, object source = null)
             {
-                if (itemList.Count >= maxLength) itemList.RemoveAt(0);
+                reportText = InsertNewLines(reportText, maxCharsPerLine);
+                if (itemList.Count >= maxReports) itemList.RemoveAt(0);
                 itemList.Add(new Item(reportText, type, source));
+            }
+
+            string InsertNewLines(string text, int charsPerLine)
+            {
+                int spaceIndex;
+                string newText = "";
+
+                string[] lineArray = text.Split('\n');
+
+                foreach (string line in lineArray)
+                {
+                    if (line.Length > charsPerLine)
+                    {
+                        spaceIndex = line.Substring(0, 40).LastIndexOf(' ');
+                        newText += line.Substring(0, spaceIndex) + '\n' + InsertNewLines(line.Substring(spaceIndex + 1), maxCharsPerLine);
+                    }
+                    else newText += line + "\n";
+                }
+
+                return newText;
             }
 
             public string RetrieveFullReportText()
@@ -72,19 +94,19 @@ namespace IngameScript
 
             public string RetrieveItemText(int index)
             {
-                if (index >= 0 && index < Length) return StatusTypeText(itemList[index].type) + itemList[index].reportText;
+                if (index >= 0 && index < ReportCount) return StatusTypeText(itemList[index].type) + itemList[index].reportText;
                 else throw new Exception("RetrieveItemText(index): Index out of range.");
             }
 
             public Type RetrieveItemType(int index)
             {
-                if (index >= 0 && index < Length) return itemList[index].type;
+                if (index >= 0 && index < ReportCount) return itemList[index].type;
                 else throw new Exception("RetrieveItemType(index): Index out of range.");
             }
 
             public object RetrieveItemSource(int index)
             {
-                if (index >= 0 && index < Length) return itemList[index].Source;
+                if (index >= 0 && index < ReportCount) return itemList[index].Source;
                 else throw new Exception("RetrieveItemSource(index): Index out of range.");
             }
 
@@ -93,11 +115,11 @@ namespace IngameScript
                 switch (type)
                 {
                     case Type.WARNING:
-                        return "Warning: ";
+                        return "Warning:\n";
                     case Type.ERROR:
-                        return "Error!: ";
+                        return "Error!:\n";
                     case Type.ALERT:
-                        return "ALERT!: ";
+                        return "ALERT!:\n";
                     default:
                         return "";
                 }

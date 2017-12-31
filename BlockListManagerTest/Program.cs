@@ -22,20 +22,20 @@ namespace IngameScript
         string[] doorGroupNames = { "Hanger Door (BAY-01)", "Hanger Door (TEST)" };
 
         List<IMyDoor> doorList = new List<IMyDoor>();
-        BlockListManager blockListManager;
+        BlockNameConverter blockListManager;
 
         public void Main(string argument)
         {
-            blockListManager = new BlockListManager(GridTerminalSystem);
+            blockListManager = new BlockNameConverter(GridTerminalSystem);
 
-            blockListManager.AppendBlocksWithNames(doorNames, doorList);
+            blockListManager.AppendBlocksFromCustomNames(doorNames, doorList);
 
             foreach (IMyDoor door in doorList)
             {
                 Echo(door.CustomName);
             }
 
-            blockListManager.AppendBlocksFromGroupsWithNames(doorGroupNames, doorList);
+            blockListManager.AppendBlocksFromGroupNames(doorGroupNames, doorList);
             foreach (IMyDoor door in doorList)
             {
                 Echo(door.CustomName);
