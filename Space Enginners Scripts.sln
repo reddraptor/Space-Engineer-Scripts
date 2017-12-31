@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockListManagerTest", "Blo
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "PressurizedAreaController", "PressurizedAreaController\PressurizedAreaController.shproj", "{8D50CD5B-0008-49C8-89CC-4B4F3F4CDF91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatusReportTest", "ErrorReportTest\StatusReportTest.csproj", "{6C0C49D9-D2A6-4BBD-94A1-FDCFC411B535}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "StatusReport", "StatusReport\StatusReport.shproj", "{EE60E83E-1100-4063-9A34-1F1F6BC5627D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared Classes", "Shared Classes", "{5EA3E0BD-29A0-4EF3-9AE7-F5363981E4AF}"
@@ -41,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirLockModuleScript", "AirL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlertSystemTest", "AlertSystemTest\AlertSystemTest.csproj", "{C46025CF-0D4E-4483-9218-DC0D8A628AB9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatusReportTest", "StatusReportTest\StatusReportTest.csproj", "{70D7FAA0-8BEF-48C8-843F-CB1082D42FDE}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Shared\AlertSystem\AlertSystem.projitems*{6aa56553-46c1-4569-a3e3-6c2b29e349f6}*SharedItemsImports = 4
@@ -52,7 +52,7 @@ Global
 		Shared\AlertSystem\AlertSystem.projitems*{6ae0b40b-f6ad-4882-ac90-6b2d86beb86a}*SharedItemsImports = 4
 		Shared\GasTanksManager\GasTanksManager.projitems*{6ae0b40b-f6ad-4882-ac90-6b2d86beb86a}*SharedItemsImports = 4
 		StatusReport\StatusReport.projitems*{6ae0b40b-f6ad-4882-ac90-6b2d86beb86a}*SharedItemsImports = 4
-		StatusReport\StatusReport.projitems*{6c0c49d9-d2a6-4bbd-94a1-fdcfc411b535}*SharedItemsImports = 4
+		StatusReport\StatusReport.projitems*{70d7faa0-8bef-48c8-843f-cb1082d42fde}*SharedItemsImports = 4
 		PressurizedAreaController\PressurizedAreaController.projitems*{8d50cd5b-0008-49c8-89cc-4b4f3f4cdf91}*SharedItemsImports = 13
 		Shared\GasTanksManager\GasTanksManager.projitems*{a6b98eb8-ed09-490d-b950-89325256f1dc}*SharedItemsImports = 4
 		StatusReport\StatusReport.projitems*{a6b98eb8-ed09-490d-b950-89325256f1dc}*SharedItemsImports = 4
@@ -107,13 +107,6 @@ Global
 		{E1F7DED5-EEE5-4709-8CB4-1609328D3CFD}.Release|Any CPU.Build.0 = Debug|x64
 		{E1F7DED5-EEE5-4709-8CB4-1609328D3CFD}.Release|x64.ActiveCfg = Debug|x64
 		{E1F7DED5-EEE5-4709-8CB4-1609328D3CFD}.Release|x64.Build.0 = Debug|x64
-		{6C0C49D9-D2A6-4BBD-94A1-FDCFC411B535}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{6C0C49D9-D2A6-4BBD-94A1-FDCFC411B535}.Debug|x64.ActiveCfg = Debug|x64
-		{6C0C49D9-D2A6-4BBD-94A1-FDCFC411B535}.Debug|x64.Build.0 = Debug|x64
-		{6C0C49D9-D2A6-4BBD-94A1-FDCFC411B535}.Release|Any CPU.ActiveCfg = Debug|x64
-		{6C0C49D9-D2A6-4BBD-94A1-FDCFC411B535}.Release|Any CPU.Build.0 = Debug|x64
-		{6C0C49D9-D2A6-4BBD-94A1-FDCFC411B535}.Release|x64.ActiveCfg = Debug|x64
-		{6C0C49D9-D2A6-4BBD-94A1-FDCFC411B535}.Release|x64.Build.0 = Debug|x64
 		{14766CA3-082F-4470-ACBF-8FE6949E0567}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{14766CA3-082F-4470-ACBF-8FE6949E0567}.Debug|x64.ActiveCfg = Debug|x64
 		{14766CA3-082F-4470-ACBF-8FE6949E0567}.Debug|x64.Build.0 = Debug|x64
@@ -156,6 +149,13 @@ Global
 		{C46025CF-0D4E-4483-9218-DC0D8A628AB9}.Release|Any CPU.Build.0 = Debug|x64
 		{C46025CF-0D4E-4483-9218-DC0D8A628AB9}.Release|x64.ActiveCfg = Debug|x64
 		{C46025CF-0D4E-4483-9218-DC0D8A628AB9}.Release|x64.Build.0 = Debug|x64
+		{70D7FAA0-8BEF-48C8-843F-CB1082D42FDE}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{70D7FAA0-8BEF-48C8-843F-CB1082D42FDE}.Debug|x64.ActiveCfg = Debug|x64
+		{70D7FAA0-8BEF-48C8-843F-CB1082D42FDE}.Debug|x64.Build.0 = Debug|x64
+		{70D7FAA0-8BEF-48C8-843F-CB1082D42FDE}.Release|Any CPU.ActiveCfg = Debug|x64
+		{70D7FAA0-8BEF-48C8-843F-CB1082D42FDE}.Release|Any CPU.Build.0 = Debug|x64
+		{70D7FAA0-8BEF-48C8-843F-CB1082D42FDE}.Release|x64.ActiveCfg = Debug|x64
+		{70D7FAA0-8BEF-48C8-843F-CB1082D42FDE}.Release|x64.Build.0 = Debug|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -170,11 +170,11 @@ Global
 		{FFB82388-D35B-4993-8D29-432F284FF8D5} = {5EA3E0BD-29A0-4EF3-9AE7-F5363981E4AF}
 		{E1F7DED5-EEE5-4709-8CB4-1609328D3CFD} = {F8557EE2-EB62-4B49-8048-A725FF6A813D}
 		{8D50CD5B-0008-49C8-89CC-4B4F3F4CDF91} = {5EA3E0BD-29A0-4EF3-9AE7-F5363981E4AF}
-		{6C0C49D9-D2A6-4BBD-94A1-FDCFC411B535} = {F8557EE2-EB62-4B49-8048-A725FF6A813D}
 		{EE60E83E-1100-4063-9A34-1F1F6BC5627D} = {5EA3E0BD-29A0-4EF3-9AE7-F5363981E4AF}
 		{14766CA3-082F-4470-ACBF-8FE6949E0567} = {F8557EE2-EB62-4B49-8048-A725FF6A813D}
 		{6AE0B40B-F6AD-4882-AC90-6B2D86BEB86A} = {F8557EE2-EB62-4B49-8048-A725FF6A813D}
 		{C46025CF-0D4E-4483-9218-DC0D8A628AB9} = {F8557EE2-EB62-4B49-8048-A725FF6A813D}
+		{70D7FAA0-8BEF-48C8-843F-CB1082D42FDE} = {F8557EE2-EB62-4B49-8048-A725FF6A813D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4513608-A7B2-4E84-9C32-B3F6F08CF172}

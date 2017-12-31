@@ -59,6 +59,7 @@ namespace IngameScript
 
             airTanksManager = new GasTanksManager(listAirTanks);
             airTanksManager.SetStatusReport(statusReport);
+            statusReport.maxCharsPerLine = 40;
 
             airLockController = new PressurizedAreaController(listDoorsOut, listDoorsIn, listAIrVentsToTanks, listAirVentsToGens, airTanksManager, AlertDictionary(), statusReport);
             
@@ -113,7 +114,7 @@ namespace IngameScript
             for (int indexText = 0; indexText < listTextPanels.Count; indexText++)
             {
                 listAlertObjects[(int)PressurizedAreaController.AlertStatus.NONE].Add(new AlertText(listTextPanels[indexText], "Area Pressurized.\n", 1f, Color.White, Color.Blue));
-                listAlertObjects[(int)PressurizedAreaController.AlertStatus.CYCLING].Add(new AlertText(listTextPanels[indexText], "Securing Area!\n", 1f, Color.Blue, Color.Yellow));
+                listAlertObjects[(int)PressurizedAreaController.AlertStatus.CYCLING].Add(new AlertText(listTextPanels[indexText], "Securing Area!\n", 1f, Color.Orange, Color.Black));
                 listAlertObjects[(int)PressurizedAreaController.AlertStatus.DEPRESSURIZED].Add(new AlertText(listTextPanels[indexText], "Area\nDepressurized!\n", 1f, Color.Cyan, Color.Red));
             }
 
