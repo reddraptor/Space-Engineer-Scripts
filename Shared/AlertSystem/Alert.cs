@@ -245,6 +245,12 @@ namespace IngameScript
                         lightBlock.BlinkLength = blinkLength;
                         lightBlock.BlinkOffset = blinkOffset;
                     }
+                    else
+                    {
+                        lightBlock.BlinkIntervalSeconds = 0f;
+                        lightBlock.BlinkLength = 0f;
+                        lightBlock.BlinkOffset = 0f;
+                    }
                 }
             }
         }

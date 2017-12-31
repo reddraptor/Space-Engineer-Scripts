@@ -18,13 +18,16 @@ namespace IngameScript
 {
     partial class Program : MyGridProgram
     {
-        string[] nameAirVentsToGens = { "Air Vent (AL-00-GEN)" };
-        string[] nameAirVentsToTanks = { "Air Vent (AL-00-TANK)" };
-        string[] nameAirTanks = { "Oxygen tank (AL-00)" };
-        string[] nameDoorsIn = { "Sliding Door (AL-00-A)" };
-        string[] nameDoorsOut = { "Sliding Door (AL-00-B)" };
-        string[] nameWarningLights = { "Interior Light (AL-00)" };
-        string[] nameTextPanels = { "Text panel (AL-00)" };
+        public string[] nameAirVentsToGens = { "Air Vent (AL-00-GEN)" };
+        public string[] nameAirVentsToTanks = { "Air Vent (AL-00-TANK)" };
+        public string[] nameAirTanks = { "Oxygen Tank (AL-00)" };
+        public string[] nameDoorsIn = { "Sliding Door (AL-00-A)" };
+        public string[] nameDoorsOut = { "Sliding Door (AL-00-B)" };
+        public string[] nameWarningLights = { "Interior Light (AL-00)" };
+        public string[] nameTextPanels = { "Text panel (AL-00)" };
+        public string[] nameWarningSounds = { };
+
+
 
         BlockNameConverter blockNameConverter;
 
@@ -33,18 +36,13 @@ namespace IngameScript
         List<IMyGasTank> listAirTanks = new List<IMyGasTank>();
         List<IMyDoor> listDoorsIn = new List<IMyDoor>();
         List<IMyDoor> listDoorsOut = new List<IMyDoor>();
-        IMyInteriorLight warningLight;
-        IMyTextPanel textPanel;
+        List<IMyInteriorLight> listWarningLights = new List<IMyInteriorLight>();
+        List<IMyTextPanel> listTextPanels = new List<IMyTextPanel>();
+        List<IMySoundBlock> listWarningSounds = new List<IMySoundBlock>();
 
         StatusReport statusReport = new StatusReport();
         GasTanksManager airTanksManager;
         PressurizedAreaController airLockController;
-
-        AlertLight alertLight;
-        AlertText alertText;
-
-        AlertSystemManager alertSystemManager;
-        
 
         public Program()
         {
@@ -55,32 +53,83 @@ namespace IngameScript
             blockNameConverter.AppendBlocksFromCustomNames(nameAirTanks, listAirTanks);
             blockNameConverter.AppendBlocksFromCustomNames(nameDoorsIn, listDoorsIn);
             blockNameConverter.AppendBlocksFromCustomNames(nameDoorsOut, listDoorsOut);
+            blockNameConverter.AppendBlocksFromCustomNames(nameWarningLights, listWarningLights);
+            blockNameConverter.AppendBlocksFromCustomNames(nameTextPanels, listTextPanels);
+            blockNameConverter.AppendBlocksFromCustomNames(nameWarningSounds, listWarningSounds);
 
             airTanksManager = new GasTanksManager(listAirTanks);
             airTanksManager.SetStatusReport(statusReport);
 
-            alertLight = new AlertLight(warningLight);
-            alertText = new AlertText(textPanel, "default");
+            airLockController = new PressurizedAreaController(listDoorsOut, listDoorsIn, listAIrVentsToTanks, listAirVentsToGens, airTanksManager, AlertDictionary(), statusReport);
             
+            Runtime.UpdateFrequency = UpdateFrequency.Update100;
         }
 
-        public void Save()
+        public void Main(string argument, UpdateType updateSource)
         {
-            // Called when the program needs to save its state. Use
-            // this method to save your state to the Storage field
-            // or some other means. 
-            // 
-            // This method is optional and can be removed if not
-            // needed.
+            if (argument == "depressurize")
+            {
+                airLockController.Depressurize();
+            }
+            else if (argument == "pressurize")
+            {
+                airLockController.Pressurize();
+            }
+            else if (argument == "lockdown")
+            {
+                airLockController.LockDown();
+            }
+
+            if (updateSource.HasFlag(UpdateType.Update100))
+            {
+                airLockController.CheckStatus();
+                Echo(statusReport.RetrieveFullReportText());
+                foreach (IMyTextPanel panel in listTextPanels)
+                {
+                    panel.WritePublicText(statusReport.RetrieveFullReportText(), true);
+                }
+                statusReport.Clear();
+            }
         }
 
-        public void Main(string argument)
+        Dictionary<PressurizedAreaController.AlertStatus, Alert> AlertDictionary()
         {
-            // The main entry point of the script, invoked every time
-            // one of the programmable block's Run actions are invoked.
-            // 
-            // The method itself is required, but the argument above
-            // can be removed if not needed.
+            Dictionary<PressurizedAreaController.AlertStatus, Alert> alertDictionary = new Dictionary<PressurizedAreaController.AlertStatus, Alert>();
+
+            List<AlertObject>[] listAlertObjects= new List<AlertObject>[PressurizedAreaController.AlertStatusCount];
+
+            for (PressurizedAreaController.AlertStatus alertStatus = 0; (int)alertStatus < PressurizedAreaController.AlertStatusCount; alertStatus++)
+            {
+                listAlertObjects[(int)alertStatus] = new List<AlertObject>();
+            }
+
+            for (int indexLight = 0; indexLight < listWarningLights.Count; indexLight++)
+            {
+                listAlertObjects[(int)PressurizedAreaController.AlertStatus.NONE].Add(new AlertLight(listWarningLights[indexLight], Color.White, false));
+                listAlertObjects[(int)PressurizedAreaController.AlertStatus.CYCLING].Add(new AlertLight(listWarningLights[indexLight], Color.Orange, true));
+                listAlertObjects[(int)PressurizedAreaController.AlertStatus.DEPRESSURIZED].Add(new AlertLight(listWarningLights[indexLight], Color.Red, false));
+            }
+
+            for (int indexText = 0; indexText < listTextPanels.Count; indexText++)
+            {
+                listAlertObjects[(int)PressurizedAreaController.AlertStatus.NONE].Add(new AlertText(listTextPanels[indexText], "Area Pressurized.\n", 1f, Color.White, Color.Blue));
+                listAlertObjects[(int)PressurizedAreaController.AlertStatus.CYCLING].Add(new AlertText(listTextPanels[indexText], "Securing Area!\n", 1f, Color.Blue, Color.Yellow));
+                listAlertObjects[(int)PressurizedAreaController.AlertStatus.DEPRESSURIZED].Add(new AlertText(listTextPanels[indexText], "Area\nDepressurized!\n", 1f, Color.Cyan, Color.Red));
+            }
+
+            for (int indexSound = 0; indexSound < listWarningSounds.Count; indexSound++)
+            {
+                listAlertObjects[(int)PressurizedAreaController.AlertStatus.NONE].Add(new AlertSound(null));
+                listAlertObjects[(int)PressurizedAreaController.AlertStatus.CYCLING].Add(new AlertSound(listWarningSounds[indexSound]));
+                listAlertObjects[(int)PressurizedAreaController.AlertStatus.DEPRESSURIZED].Add(new AlertSound(null));
+            }
+
+            for (PressurizedAreaController.AlertStatus alertStatus = 0; (int)alertStatus < PressurizedAreaController.AlertStatusCount; alertStatus++)
+            {
+                alertDictionary.Add(alertStatus, new Alert(listAlertObjects[(int)alertStatus]));
+            }
+
+            return alertDictionary;
         }
     }
 }

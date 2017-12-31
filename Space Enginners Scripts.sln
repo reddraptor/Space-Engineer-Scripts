@@ -29,8 +29,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared Classes", "Shared Cl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test Projects", "Test Projects", "{F8557EE2-EB62-4B49-8048-A725FF6A813D}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "StatusReporter", "IStatusReportable\StatusReporter.shproj", "{B02BED7B-11B7-46FC-85B9-B307F4BB71F6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntennaCommunicationTest", "AntennaCommunicationTest\AntennaCommunicationTest.csproj", "{14766CA3-082F-4470-ACBF-8FE6949E0567}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StationOperationsScript", "StationOperationsScript\StationOperationsScript.csproj", "{A3898FCA-0702-4CC3-B904-A90CA0DA2946}"
@@ -45,25 +43,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlertSystemTest", "AlertSys
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		IStatusReportable\IStatusReportable.projitems*{6aa56553-46c1-4569-a3e3-6c2b29e349f6}*SharedItemsImports = 4
 		Shared\AlertSystem\AlertSystem.projitems*{6aa56553-46c1-4569-a3e3-6c2b29e349f6}*SharedItemsImports = 4
 		Shared\GasTanksManager\GasTanksManager.projitems*{6aa56553-46c1-4569-a3e3-6c2b29e349f6}*SharedItemsImports = 4
 		Shared\LowHydrogenWarningSystem\LowHydrogenWarningSystem.projitems*{6aa56553-46c1-4569-a3e3-6c2b29e349f6}*SharedItemsImports = 4
 		StatusReport\StatusReport.projitems*{6aa56553-46c1-4569-a3e3-6c2b29e349f6}*SharedItemsImports = 4
 		BlockListManager\BlockListManager.projitems*{6ae0b40b-f6ad-4882-ac90-6b2d86beb86a}*SharedItemsImports = 4
-		IStatusReportable\IStatusReportable.projitems*{6ae0b40b-f6ad-4882-ac90-6b2d86beb86a}*SharedItemsImports = 4
 		PressurizedAreaController\PressurizedAreaController.projitems*{6ae0b40b-f6ad-4882-ac90-6b2d86beb86a}*SharedItemsImports = 4
 		Shared\AlertSystem\AlertSystem.projitems*{6ae0b40b-f6ad-4882-ac90-6b2d86beb86a}*SharedItemsImports = 4
 		Shared\GasTanksManager\GasTanksManager.projitems*{6ae0b40b-f6ad-4882-ac90-6b2d86beb86a}*SharedItemsImports = 4
 		StatusReport\StatusReport.projitems*{6ae0b40b-f6ad-4882-ac90-6b2d86beb86a}*SharedItemsImports = 4
-		IStatusReportable\IStatusReportable.projitems*{6c0c49d9-d2a6-4bbd-94a1-fdcfc411b535}*SharedItemsImports = 4
 		StatusReport\StatusReport.projitems*{6c0c49d9-d2a6-4bbd-94a1-fdcfc411b535}*SharedItemsImports = 4
 		PressurizedAreaController\PressurizedAreaController.projitems*{8d50cd5b-0008-49c8-89cc-4b4f3f4cdf91}*SharedItemsImports = 13
-		IStatusReportable\IStatusReportable.projitems*{a6b98eb8-ed09-490d-b950-89325256f1dc}*SharedItemsImports = 4
 		Shared\GasTanksManager\GasTanksManager.projitems*{a6b98eb8-ed09-490d-b950-89325256f1dc}*SharedItemsImports = 4
 		StatusReport\StatusReport.projitems*{a6b98eb8-ed09-490d-b950-89325256f1dc}*SharedItemsImports = 4
-		IStatusReportable\IStatusReportable.projitems*{b02bed7b-11b7-46fc-85b9-b307f4bb71f6}*SharedItemsImports = 13
-		IStatusReportable\IStatusReportable.projitems*{b477d08a-9e79-4e54-9104-28376342b02d}*SharedItemsImports = 4
 		Shared\AlertSystem\AlertSystem.projitems*{b477d08a-9e79-4e54-9104-28376342b02d}*SharedItemsImports = 4
 		Shared\GasTanksManager\GasTanksManager.projitems*{b477d08a-9e79-4e54-9104-28376342b02d}*SharedItemsImports = 4
 		StatusReport\StatusReport.projitems*{b477d08a-9e79-4e54-9104-28376342b02d}*SharedItemsImports = 4
@@ -71,7 +63,6 @@ Global
 		Shared\GasTanksManager\GasTanksManager.projitems*{c4d33030-512b-49e4-b084-9ec402ad6e4c}*SharedItemsImports = 13
 		Shared\LowHydrogenWarningSystem\LowHydrogenWarningSystem.projitems*{c5a3fd23-f236-4c4e-ad1c-d3e10e76aaff}*SharedItemsImports = 13
 		BlockListManager\BlockListManager.projitems*{d739d993-319e-4d2a-8001-285dec8cbba2}*SharedItemsImports = 4
-		IStatusReportable\IStatusReportable.projitems*{d739d993-319e-4d2a-8001-285dec8cbba2}*SharedItemsImports = 4
 		PressurizedAreaController\PressurizedAreaController.projitems*{d739d993-319e-4d2a-8001-285dec8cbba2}*SharedItemsImports = 4
 		Shared\AlertSystem\AlertSystem.projitems*{d739d993-319e-4d2a-8001-285dec8cbba2}*SharedItemsImports = 4
 		Shared\GasTanksManager\GasTanksManager.projitems*{d739d993-319e-4d2a-8001-285dec8cbba2}*SharedItemsImports = 4
@@ -181,7 +172,6 @@ Global
 		{8D50CD5B-0008-49C8-89CC-4B4F3F4CDF91} = {5EA3E0BD-29A0-4EF3-9AE7-F5363981E4AF}
 		{6C0C49D9-D2A6-4BBD-94A1-FDCFC411B535} = {F8557EE2-EB62-4B49-8048-A725FF6A813D}
 		{EE60E83E-1100-4063-9A34-1F1F6BC5627D} = {5EA3E0BD-29A0-4EF3-9AE7-F5363981E4AF}
-		{B02BED7B-11B7-46FC-85B9-B307F4BB71F6} = {5EA3E0BD-29A0-4EF3-9AE7-F5363981E4AF}
 		{14766CA3-082F-4470-ACBF-8FE6949E0567} = {F8557EE2-EB62-4B49-8048-A725FF6A813D}
 		{6AE0B40B-F6AD-4882-AC90-6B2D86BEB86A} = {F8557EE2-EB62-4B49-8048-A725FF6A813D}
 		{C46025CF-0D4E-4483-9218-DC0D8A628AB9} = {F8557EE2-EB62-4B49-8048-A725FF6A813D}

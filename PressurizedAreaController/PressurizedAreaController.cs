@@ -29,7 +29,8 @@ namespace IngameScript
                                                         CYCLING         = 1 << 1,
                                                         SECURING        = 1 << 2 }
 
-            public enum AlertStatus { PRESSURIZED, CYCLING, DEPRESSURIZED}
+            public static int AlertStatusCount = 3;
+            public enum AlertStatus { NONE, CYCLING, DEPRESSURIZED }
 
             protected List<IMyDoor> listExteriorDoors;
             protected List<IMyDoor> listInteriorDoors;
@@ -144,8 +145,7 @@ namespace IngameScript
                 this.listVentsToO2Tanks = listVentsToO2Tanks;
                 this.listVentsToO2Gens = listVentsToO2Gens;
                 this.o2TanksManager = o2TanksManager;
-                if (alertDictionary != null)
-                    alertSystemManager = new AlertSystemManager<AlertStatus>(alertDictionary);
+                if (alertDictionary != null) alertSystemManager = new AlertSystemManager<AlertStatus>(alertDictionary);
                 SetStatusReport(statusReport);
                 Pressurize();
             }
@@ -154,7 +154,11 @@ namespace IngameScript
             {
                 if (status.HasFlag(PressurizedAreaStatus.PRESSURIZE)) return;
                 status |= (PressurizedAreaStatus.PRESSURIZE | PressurizedAreaStatus.CYCLING | PressurizedAreaStatus.SECURING);
-                if (alertSystemManager != null) alertSystemManager.Alerts[AlertStatus.CYCLING].Enabled = true;
+                if (alertSystemManager != null)
+                {
+                    alertSystemManager.DisableAlerts();
+                    alertSystemManager.Alerts[AlertStatus.CYCLING].Enabled = true;
+                }
                 CheckStatus();
             }
 
@@ -164,7 +168,11 @@ namespace IngameScript
                 if (!status.HasFlag(PressurizedAreaStatus.PRESSURIZE)) return;
                 status &= ~PressurizedAreaStatus.PRESSURIZE;
                 status |= (PressurizedAreaStatus.CYCLING | PressurizedAreaStatus.SECURING);
-                if (alertSystemManager != null) alertSystemManager.Alerts[AlertStatus.CYCLING].Enabled = true;
+                if (alertSystemManager != null)
+                {
+                    alertSystemManager.DisableAlerts();
+                    alertSystemManager.Alerts[AlertStatus.CYCLING].Enabled = true;
+                }
                 EnableVents(listVentsToO2Gens, false);
                 CheckStatus();
             }
@@ -238,7 +246,11 @@ namespace IngameScript
             protected void GoToPressurizedStatus()
             {
                 status &= ~PressurizedAreaStatus.CYCLING;
-                if (alertSystemManager != null) alertSystemManager.Alerts[AlertStatus.PRESSURIZED].Enabled = true;
+                if (alertSystemManager != null)
+                {
+                    alertSystemManager.DisableAlerts();
+                    alertSystemManager.Alerts[AlertStatus.NONE].Enabled = true;
+                }
                 EnableVents(listVentsToO2Gens);
                 OpenDoors(listInteriorDoors);
                 ReportItem("All vents enabled. Opening interior doors. Pressurized.");
@@ -247,7 +259,11 @@ namespace IngameScript
             protected void GoToDepressurizedStatus()
             {
                 status &= ~PressurizedAreaStatus.CYCLING;
-                if (alertSystemManager != null) alertSystemManager.Alerts[AlertStatus.DEPRESSURIZED].Enabled = true;
+                if (alertSystemManager != null)
+                {
+                    alertSystemManager.DisableAlerts();
+                    alertSystemManager.Alerts[AlertStatus.DEPRESSURIZED].Enabled = true;
+                }
                 OpenDoors(listExteriorDoors);
                 ReportItem("Opening exterior doors. Depressurized.");
             }

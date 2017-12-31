@@ -10,5 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)StatusReport.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StatusReporter.cs" />
   </ItemGroup>
 </Project>

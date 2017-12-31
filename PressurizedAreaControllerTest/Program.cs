@@ -36,7 +36,6 @@ namespace IngameScript
 
         PressurizedAreaController hangerPressureController;
         GasTanksManager gasTanksManager;
-        AlertSystemManager alertSystemManager;
 
         public Program()
         {
@@ -51,8 +50,7 @@ namespace IngameScript
 
             gasTanksManager = new GasTanksManager(o2TankList);
             gasTanksManager.SetStatusReport(statusReport);
-            alertSystemManager = new AlertSystemManager();
-            hangerPressureController = new PressurizedAreaController(exteriorDoorList, interiorDoorList, airVentToO2TankList, airVentToO2GenList, gasTanksManager, alertSystemManager, statusReport);
+            hangerPressureController = new PressurizedAreaController(exteriorDoorList, interiorDoorList, airVentToO2TankList, airVentToO2GenList, gasTanksManager, null, statusReport);
 
             Runtime.UpdateFrequency = UpdateFrequency.Update100;
         }

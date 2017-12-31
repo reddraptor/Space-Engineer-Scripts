@@ -29,11 +29,11 @@ namespace IngameScript
         private List<IMyInteriorLight> lightBlocks;
         private IMyTextPanel lcdPanel;
 
-        private AlertObject bigBadAlertSound;
-        private AlertObject bigBadAlertLight;
-        private AlertObject biggerBadderAlertLight;
-        private AlertObject bigBadAlertMessage;
-        private AlertObject biggerBadderAlertMessage;
+        private AlertSound bigBadAlertSound;
+        private AlertLight bigBadAlertLight;
+        private AlertLight biggerBadderAlertLight;
+        private AlertText bigBadAlertMessage;
+        private AlertText biggerBadderAlertMessage;
         private Alert bigBadAlert;
         private Alert biggerBadderAlert;
 
