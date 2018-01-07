@@ -20,7 +20,7 @@ namespace IngameScript
     {
         public class StatusReporter
         {
-            private StatusReport statusReport;
+            private StatusReport statusReport = null;
 
             public void SetStatusReport(StatusReport statusReport)
             {
@@ -29,8 +29,7 @@ namespace IngameScript
 
             protected void ReportItem(string text, StatusReport.Type type = StatusReport.Type.TYPICAL)
             {
-                if (statusReport == null) throw new Exception("No valid status report set, with SetStatusReport(statusReport), before ReportItem(text, type): " + this.ToString());
-                statusReport.AddItem(text, type, this);
+                if (statusReport != null) statusReport.AddItem(text, type, this);
             }
         }
     }

@@ -41,8 +41,22 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlertSystemTest", "AlertSys
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatusReportTest", "StatusReportTest\StatusReportTest.csproj", "{70D7FAA0-8BEF-48C8-843F-CB1082D42FDE}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "PressurizedAreaController2", "PressurizedAreaController2\PressurizedAreaController2.shproj", "{F0ECF085-F46F-40C7-A4FD-100CA1D9C10E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NameFindAndReplaceScript", "NameReplaceScript\NameFindAndReplaceScript.csproj", "{3820C734-7295-4CD4-996D-131572FCFBCA}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "NameFindAndReplace", "NameReplacer\NameFindAndReplace.shproj", "{A91D1A4A-D559-4781-B29E-DA23BB57D7AC}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CommonBlockFinder", "CommonBlockFinder\CommonBlockFinder.shproj", "{0A90DFEE-7699-41A3-88EB-02E0B2A73EE4}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CommandParser", "CommandParser\CommandParser.shproj", "{8624FAEE-1954-4224-90F6-4994C6D9B956}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		CommonBlockFinder\CommonBlockFinder.projitems*{0a90dfee-7699-41a3-88eb-02e0b2a73ee4}*SharedItemsImports = 13
+		CommandParser\CommandParser.projitems*{3820c734-7295-4cd4-996d-131572fcfbca}*SharedItemsImports = 4
+		CommonBlockFinder\CommonBlockFinder.projitems*{3820c734-7295-4cd4-996d-131572fcfbca}*SharedItemsImports = 4
+		NameReplacer\NameReplacer.projitems*{3820c734-7295-4cd4-996d-131572fcfbca}*SharedItemsImports = 4
 		Shared\AlertSystem\AlertSystem.projitems*{6aa56553-46c1-4569-a3e3-6c2b29e349f6}*SharedItemsImports = 4
 		Shared\GasTanksManager\GasTanksManager.projitems*{6aa56553-46c1-4569-a3e3-6c2b29e349f6}*SharedItemsImports = 4
 		Shared\LowHydrogenWarningSystem\LowHydrogenWarningSystem.projitems*{6aa56553-46c1-4569-a3e3-6c2b29e349f6}*SharedItemsImports = 4
@@ -53,9 +67,11 @@ Global
 		Shared\GasTanksManager\GasTanksManager.projitems*{6ae0b40b-f6ad-4882-ac90-6b2d86beb86a}*SharedItemsImports = 4
 		StatusReport\StatusReport.projitems*{6ae0b40b-f6ad-4882-ac90-6b2d86beb86a}*SharedItemsImports = 4
 		StatusReport\StatusReport.projitems*{70d7faa0-8bef-48c8-843f-cb1082d42fde}*SharedItemsImports = 4
+		CommandParser\CommandParser.projitems*{8624faee-1954-4224-90f6-4994c6d9b956}*SharedItemsImports = 13
 		PressurizedAreaController\PressurizedAreaController.projitems*{8d50cd5b-0008-49c8-89cc-4b4f3f4cdf91}*SharedItemsImports = 13
 		Shared\GasTanksManager\GasTanksManager.projitems*{a6b98eb8-ed09-490d-b950-89325256f1dc}*SharedItemsImports = 4
 		StatusReport\StatusReport.projitems*{a6b98eb8-ed09-490d-b950-89325256f1dc}*SharedItemsImports = 4
+		NameReplacer\NameReplacer.projitems*{a91d1a4a-d559-4781-b29e-da23bb57d7ac}*SharedItemsImports = 13
 		Shared\AlertSystem\AlertSystem.projitems*{b477d08a-9e79-4e54-9104-28376342b02d}*SharedItemsImports = 4
 		Shared\GasTanksManager\GasTanksManager.projitems*{b477d08a-9e79-4e54-9104-28376342b02d}*SharedItemsImports = 4
 		StatusReport\StatusReport.projitems*{b477d08a-9e79-4e54-9104-28376342b02d}*SharedItemsImports = 4
@@ -63,13 +79,14 @@ Global
 		Shared\GasTanksManager\GasTanksManager.projitems*{c4d33030-512b-49e4-b084-9ec402ad6e4c}*SharedItemsImports = 13
 		Shared\LowHydrogenWarningSystem\LowHydrogenWarningSystem.projitems*{c5a3fd23-f236-4c4e-ad1c-d3e10e76aaff}*SharedItemsImports = 13
 		BlockListManager\BlockListManager.projitems*{d739d993-319e-4d2a-8001-285dec8cbba2}*SharedItemsImports = 4
-		PressurizedAreaController\PressurizedAreaController.projitems*{d739d993-319e-4d2a-8001-285dec8cbba2}*SharedItemsImports = 4
+		PressurizedAreaController2\PressurizedAreaController2.projitems*{d739d993-319e-4d2a-8001-285dec8cbba2}*SharedItemsImports = 4
 		Shared\AlertSystem\AlertSystem.projitems*{d739d993-319e-4d2a-8001-285dec8cbba2}*SharedItemsImports = 4
 		Shared\GasTanksManager\GasTanksManager.projitems*{d739d993-319e-4d2a-8001-285dec8cbba2}*SharedItemsImports = 4
 		StatusReport\StatusReport.projitems*{d739d993-319e-4d2a-8001-285dec8cbba2}*SharedItemsImports = 4
 		BlockListManager\BlockListManager.projitems*{e1f7ded5-eee5-4709-8cb4-1609328d3cfd}*SharedItemsImports = 4
 		Shared\AlertSystem\AlertSystem.projitems*{ea03188d-a77a-41fa-a04d-a6f057af8b03}*SharedItemsImports = 13
 		StatusReport\StatusReport.projitems*{ee60e83e-1100-4063-9a34-1f1f6bc5627d}*SharedItemsImports = 13
+		PressurizedAreaController2\PressurizedAreaController2.projitems*{f0ecf085-f46f-40c7-a4fd-100ca1d9c10e}*SharedItemsImports = 13
 		BlockListManager\BlockListManager.projitems*{ffb82388-d35b-4993-8d29-432f284ff8d5}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -156,6 +173,13 @@ Global
 		{70D7FAA0-8BEF-48C8-843F-CB1082D42FDE}.Release|Any CPU.Build.0 = Debug|x64
 		{70D7FAA0-8BEF-48C8-843F-CB1082D42FDE}.Release|x64.ActiveCfg = Debug|x64
 		{70D7FAA0-8BEF-48C8-843F-CB1082D42FDE}.Release|x64.Build.0 = Debug|x64
+		{3820C734-7295-4CD4-996D-131572FCFBCA}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{3820C734-7295-4CD4-996D-131572FCFBCA}.Debug|x64.ActiveCfg = Debug|x64
+		{3820C734-7295-4CD4-996D-131572FCFBCA}.Debug|x64.Build.0 = Debug|x64
+		{3820C734-7295-4CD4-996D-131572FCFBCA}.Release|Any CPU.ActiveCfg = Debug|x64
+		{3820C734-7295-4CD4-996D-131572FCFBCA}.Release|Any CPU.Build.0 = Debug|x64
+		{3820C734-7295-4CD4-996D-131572FCFBCA}.Release|x64.ActiveCfg = Debug|x64
+		{3820C734-7295-4CD4-996D-131572FCFBCA}.Release|x64.Build.0 = Debug|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -175,6 +199,10 @@ Global
 		{6AE0B40B-F6AD-4882-AC90-6B2D86BEB86A} = {F8557EE2-EB62-4B49-8048-A725FF6A813D}
 		{C46025CF-0D4E-4483-9218-DC0D8A628AB9} = {F8557EE2-EB62-4B49-8048-A725FF6A813D}
 		{70D7FAA0-8BEF-48C8-843F-CB1082D42FDE} = {F8557EE2-EB62-4B49-8048-A725FF6A813D}
+		{F0ECF085-F46F-40C7-A4FD-100CA1D9C10E} = {5EA3E0BD-29A0-4EF3-9AE7-F5363981E4AF}
+		{A91D1A4A-D559-4781-B29E-DA23BB57D7AC} = {5EA3E0BD-29A0-4EF3-9AE7-F5363981E4AF}
+		{0A90DFEE-7699-41A3-88EB-02E0B2A73EE4} = {5EA3E0BD-29A0-4EF3-9AE7-F5363981E4AF}
+		{8624FAEE-1954-4224-90F6-4994C6D9B956} = {5EA3E0BD-29A0-4EF3-9AE7-F5363981E4AF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4513608-A7B2-4E84-9C32-B3F6F08CF172}

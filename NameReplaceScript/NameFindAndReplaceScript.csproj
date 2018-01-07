@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D739D993-319E-4D2A-8001-285DEC8CBBA2}</ProjectGuid>
+    <ProjectGuid>{3820C734-7295-4CD4-996D-131572FCFBCA}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>IngameScript</RootNamespace>
-    <AssemblyName>AirLockModuleScript</AssemblyName>
+    <AssemblyName>NameReplaceScript</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -105,11 +105,9 @@
     <AdditionalFiles Include="thumb.png" />
     <AdditionalFiles Include="MDK\whitelist.cache" />
   </ItemGroup>
-  <Import Project="..\Shared\AlertSystem\AlertSystem.projitems" Label="Shared" />
-  <Import Project="..\BlockListManager\BlockListManager.projitems" Label="Shared" />
-  <Import Project="..\Shared\GasTanksManager\GasTanksManager.projitems" Label="Shared" />
-  <Import Project="..\StatusReport\StatusReport.projitems" Label="Shared" />
-  <Import Project="..\PressurizedAreaController2\PressurizedAreaController2.projitems" Label="Shared" />
+  <Import Project="..\CommonBlockFinder\CommonBlockFinder.projitems" Label="Shared" />
+  <Import Project="..\NameReplacer\NameReplacer.projitems" Label="Shared" />
+  <Import Project="..\CommandParser\CommandParser.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
     <Copy SourceFiles="mdk\mdk.options" DestinationFolder="$(TargetDir)\mdk" />

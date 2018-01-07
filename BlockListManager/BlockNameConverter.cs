@@ -40,7 +40,7 @@ namespace IngameScript
             {
                 foreach (string name in blockNames)
                 {
-                    AppendBlockFromCustomName<BlockType>(name, blockList);
+                    AppendBlockFromCustomName(name, blockList);
                 }
             }
 
@@ -68,7 +68,7 @@ namespace IngameScript
             {
                 foreach (string name in groupNames)
                 {
-                    AppendBlocksFromGroupName<BlockType>(name, blockList);
+                    AppendBlocksFromGroupName(name, blockList);
                 }
             }
 
