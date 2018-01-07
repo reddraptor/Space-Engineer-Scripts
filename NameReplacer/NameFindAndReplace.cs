@@ -21,7 +21,7 @@ namespace IngameScript
         public class NameFindAndReplace
         {
             IMyGridTerminalSystem gridTerminalSystem;
-            
+
             public Exception NullGridException
             {
                 get { return new Exception("NameFindAndReplace: Grid terminal system is null."); }
@@ -30,11 +30,6 @@ namespace IngameScript
             public Exception BlockNotFoundException
             {
                 get { return new Exception("NameFindAndReplace: Block not found."); }
-            }
-
-            public Exception GroupNotFoundException
-            {
-                get { return new Exception("NameFindAndReplace: Group not found."); }
             }
                 
             public NameFindAndReplace(IMyGridTerminalSystem gridTerminalSystem)
@@ -69,7 +64,6 @@ namespace IngameScript
 
             public void ReplaceInGroup(string target, string replacement, IMyBlockGroup blockGroup)
             {
-                if (blockGroup == null) throw GroupNotFoundException;
                 List<IMyTerminalBlock> blockList = new List<IMyTerminalBlock>();
                 blockGroup.GetBlocks(blockList);
                 Replace(target, replacement, blockList);
@@ -100,7 +94,6 @@ namespace IngameScript
 
             public void Append(string suffix, IMyTerminalBlock block)
             {
-                if (block == null) throw BlockNotFoundException;
                 block.CustomName = block.CustomName + suffix;
             }
 
@@ -111,7 +104,6 @@ namespace IngameScript
 
             public void AppendInGroup (string suffix, IMyBlockGroup blockGroup)
             {
-                if (blockGroup == null) throw GroupNotFoundException;
                 List<IMyTerminalBlock> blockList = new List<IMyTerminalBlock>();
                 blockGroup.GetBlocks(blockList);
                 Append(suffix, blockList);
