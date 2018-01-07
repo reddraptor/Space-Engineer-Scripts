@@ -32,8 +32,18 @@ namespace IngameScript
         {
             if (updateSource.HasFlag(UpdateType.Terminal))
             {
-                List<string> tokenList = commandParser.GetTokensFrom(argument);
-                
+                List<string> tokenList;
+
+                try
+                {
+                    tokenList = commandParser.GetTokensFrom(argument);
+                }
+                catch (CommandParser.MissingQuotationException)
+                {
+                    Echo("Error. Missing a quotation mark.");
+                    return;
+                }
+
                 Echo(commandParser.LastCommand());
 
                 switch (tokenList[0])
@@ -51,7 +61,8 @@ namespace IngameScript
                                 nameChanger.ReplaceInGroup(tokenList[3], tokenList[4], tokenList[2]);
                                 break;
                             default:
-                                throw new Exception("Unknown Command. Use: replace (one/all/group) {(param0),...}");
+                                Echo("Unknown Command. Use: replace (one/all/group) {(param0),...}");
+                                return;
                         }
                         break;
 
@@ -68,12 +79,14 @@ namespace IngameScript
                                 nameChanger.AppendInGroup(tokenList[3], tokenList[2]);
                                 break;
                             default:
-                                throw new Exception("Unknown Command. Use: append (one/all/group) {(param0),...}");
+                                Echo("Unknown Command. Use: append (one/all/group) {(param0),...}");
+                                return;
                         }
                         break;
 
                     default:
-                        throw new Exception("Unknown Command. Use: (replace/append) (one/all/group)      {(param0),...}");
+                        Echo ("Unknown Command. Use: (replace/append) (one/all/group) {(param0),...}");
+                        return;
                 }
             }
         }

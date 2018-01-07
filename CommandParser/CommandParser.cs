@@ -20,9 +20,12 @@ namespace IngameScript
     {
         public class CommandParser
         {
-            public Exception MissingQuotationException
+            /// <summary>
+            /// Thrown when there is unpaired quotation marks.
+            /// </summary>
+            public class MissingQuotationException : Exception
             {
-                get { return new Exception("CommandParser: Missing quotation mark."); }
+                public MissingQuotationException() : base("CommandParser: Missing quotation mark.") { }
             } 
 
             List<string> lastParseResult;
@@ -32,6 +35,12 @@ namespace IngameScript
                 get { return lastParseResult; }
             }
 
+            /// <summary>
+            /// Takes a string, such as an argument from programmable block, and parses it into string tokens based on spaces and quotation marks.
+            /// </summary>
+            /// <param name="command">String to parse.</param>
+            /// <returns>List of tokens as Strings.</returns>
+            /// <exception cref="MissingQuotationException"></exception>
             public List<string> GetTokensFrom(string command)
             {
                 StringBuilder sbToken = new StringBuilder(command.Length);
