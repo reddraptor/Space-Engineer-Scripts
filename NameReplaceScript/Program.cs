@@ -43,51 +43,65 @@ namespace IngameScript
                     Echo("Error. Missing a quotation mark.");
                     return;
                 }
-
+                catch (Exception) { throw; }
+                
                 Echo(commandParser.LastCommand());
 
-                switch (tokenList[0])
+                try
                 {
-                    case "replace":
-                        switch(tokenList[1])
-                        {
-                            case "one":
-                                nameChanger.Replace(tokenList[3], tokenList[4], tokenList[2]);
-                                break;
-                            case "all":
-                                nameChanger.ReplaceInAll(tokenList[2], tokenList[3]);
-                                break;
-                            case "group":
-                                nameChanger.ReplaceInGroup(tokenList[3], tokenList[4], tokenList[2]);
-                                break;
-                            default:
-                                Echo("Unknown Command. Use: replace (one/all/group) {(param0),...}");
-                                return;
-                        }
-                        break;
+                    switch (tokenList[0])
+                    {
+                        case "replace":
+                            switch (tokenList[1])
+                            {
+                                case "one":
+                                    nameChanger.Replace(tokenList[3], tokenList[4], tokenList[2]);
+                                    break;
+                                case "all":
+                                    nameChanger.ReplaceInAll(tokenList[2], tokenList[3]);
+                                    break;
+                                case "group":
+                                    nameChanger.ReplaceInGroup(tokenList[3], tokenList[4], tokenList[2]);
+                                    break;
+                                default:
+                                    Echo("Unknown Command. Use: replace (one/all/group) {(param0),...}");
+                                    return;
+                            }
+                            break;
 
-                    case "append":
-                        switch (tokenList[1])
-                        {
-                            case "one":
-                                nameChanger.Append(tokenList[3], tokenList[2]);
-                                break;
-                            case "all":
-                                nameChanger.AppendToAll(tokenList[2]);
-                                break;
-                            case "group":
-                                nameChanger.AppendInGroup(tokenList[3], tokenList[2]);
-                                break;
-                            default:
-                                Echo("Unknown Command. Use: append (one/all/group) {(param0),...}");
-                                return;
-                        }
-                        break;
+                        case "append":
+                            switch (tokenList[1])
+                            {
+                                case "one":
+                                    nameChanger.Append(tokenList[3], tokenList[2]);
+                                    break;
+                                case "all":
+                                    nameChanger.AppendToAll(tokenList[2]);
+                                    break;
+                                case "group":
+                                    nameChanger.AppendInGroup(tokenList[3], tokenList[2]);
+                                    break;
+                                default:
+                                    Echo("Unknown Command. Use: append (one/all/group) {(param0),...}");
+                                    return;
+                            }
+                            break;
 
-                    default:
-                        Echo ("Unknown Command. Use: (replace/append) (one/all/group) {(param0),...}");
-                        return;
+                        default:
+                            Echo("Unknown Command. Use: (replace/append) (one/all/group) {(param0),...}");
+                            return;
+                    }
+
                 }
+                catch (NameFindAndReplace.BlockNotFoundException)
+                {
+                    Echo("Block '" + tokenList[2] + "' not found.");
+                }
+                catch (NameFindAndReplace.GroupNotFoundException)
+                {
+                    Echo("Group '" + tokenList[2] + "' not found.");
+                }
+                catch (Exception) { throw; }
             }
         }
     }

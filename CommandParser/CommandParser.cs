@@ -74,7 +74,7 @@ namespace IngameScript
                         sbToken.Append(charArray[i]);
                 }
 
-                if (openQuote) throw MissingQuotationException;
+                if (openQuote) throw new MissingQuotationException();
                 sToken = sbToken.ToString();
                 if (sToken != "") tokenList.Add(sToken);
 
