@@ -18,61 +18,58 @@ namespace IngameScript
 {
     partial class Program
     {
-        public class Access : StatusReporter
+        public class Access
         {
             List<IMyDoor> listOfDoors;
             Area[] area = new Area[2];
+
+            public class NoDoorsException : Exception
+            {
+                public NoDoorsException() : base("Access: No doors in list.") { }
+            }
 
             public bool IsClosed
             {
                 get
                 {
-                    if (!ValidDoorList()) return false;
+                    ValidateDoorList();
                     foreach (IMyDoor door in listOfDoors)
-                        if (!Valid(door) || door.Status !=  DoorStatus.Closed) return false;
+                    {
+                        Validate(door);
+                        if (door.Status != DoorStatus.Closed) return false;
+                    }
                     return true;
                 }
             }
 
-            protected bool ValidDoorList()
+            protected void ValidateDoorList()
             {
-                if (listOfDoors == null)
-                {
-                    ReportItem("Access: listOfDoors == null!", StatusReport.Type.ERROR);
-                    return false;
-                }
-                if (listOfDoors.Count < 1)
-                {
-                    ReportItem("Access: listOfDoors is empty!", StatusReport.Type.ERROR);
-                    return false;
-                }
-                return true;
+                if (listOfDoors == null) throw new NullReferenceException("Access: Door list is null.");
+                if (listOfDoors.Count < 1) throw new NoDoorsException();
             }
 
-            protected bool Valid(IMyDoor door)
+            protected void Validate(IMyDoor door)
             {
-                if (door == null)
-                {
-                    ReportItem("Access: door == null!", StatusReport.Type.ERROR);
-                    return false;
-                }
-                return true;
+                if (door == null) throw new NullReferenceException("Access: A door has null value.");
             }
 
             public bool IsSecured
             {
                 get
                 {
-                    if (!ValidDoorList() || !IsClosed) return false;
+                    ValidateDoorList();
                     foreach (IMyDoor door in listOfDoors)
-                        if (!Valid(door) || door.Enabled) return false;
+                    {
+                        Validate(door);
+                        if (door.Status != DoorStatus.Closed || door.Enabled) return false;
+                    }
                     return true;
                 }
             }
 
             public IMyDoor Door(int i)
             {
-                if (!ValidDoorList()) return null;
+                ValidateDoorList();
                 if (i < 0 || i >= listOfDoors.Count) return null;
                 return listOfDoors[i];
             }
@@ -81,7 +78,7 @@ namespace IngameScript
             {
                 get
                 {
-                    if (!ValidDoorList()) return -1;
+                    ValidateDoorList();
                     return listOfDoors.Count;
                 }
             }
@@ -97,15 +94,15 @@ namespace IngameScript
                 area[0] = area0;
                 area[1] = area1;
                 this.listOfDoors = listOfDoors;
-                ValidDoorList();
+                ValidateDoorList();
             }
 
-            public bool IsOpen()
+            public bool Open()
             {
-                if (!ValidDoorList()) return false; 
+                ValidateDoorList();
                 foreach (IMyDoor door in listOfDoors)
                 {
-                    if (!Valid(door)) return false;
+                    Validate(door);
                     if (!door.Enabled) door.Enabled = true;
                     if (door.Status != DoorStatus.Open || door.Status != DoorStatus.Opening)
                     {
@@ -117,10 +114,10 @@ namespace IngameScript
 
             public bool Close()
             {
-                if (!ValidDoorList()) return false;
+                ValidateDoorList();
                 foreach (IMyDoor door in listOfDoors)
                 {
-                    if (!Valid(door)) return false;
+                    Validate(door);
                     door.Enabled = true;
                     door.CloseDoor();
                 }
@@ -129,10 +126,10 @@ namespace IngameScript
 
             public bool Disable()
             {
-                if (!ValidDoorList()) return false;
+                ValidateDoorList();
                 foreach (IMyDoor door in listOfDoors)
                 {
-                    if (!Valid(door)) return false;
+                    Validate(door);
                     door.Enabled = false;
                 }
                 return true;

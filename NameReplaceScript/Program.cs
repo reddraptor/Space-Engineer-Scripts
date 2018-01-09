@@ -95,11 +95,11 @@ namespace IngameScript
                 }
                 catch (NameFindAndReplace.BlockNotFoundException)
                 {
-                    Echo("Block '" + tokenList[2] + "' not found.");
+                    Echo("Block not found.");
                 }
                 catch (NameFindAndReplace.GroupNotFoundException)
                 {
-                    Echo("Group '" + tokenList[2] + "' not found.");
+                    Echo("Group not found.");
                 }
                 catch (Exception) { throw; }
             }

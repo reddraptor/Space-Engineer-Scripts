@@ -125,7 +125,6 @@ namespace IngameScript
             {
                 get { return storageTanksManager; }
             }
-            
         }
     }
 }
