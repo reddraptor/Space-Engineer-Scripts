@@ -44,7 +44,7 @@ namespace IngameScript
 
             protected void ValidateDoorList()
             {
-                if (listOfDoors == null) throw new NullReferenceException("Access: Door list is null.");
+                if (listOfDoors == null) throw new NullReferenceException("Access: Door list has null value.");
                 if (listOfDoors.Count < 1) throw new NoDoorsException();
             }
 

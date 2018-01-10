@@ -51,6 +51,11 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CommonBlockFinder", "Common
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CommandParser", "CommandParser\CommandParser.shproj", "{8624FAEE-1954-4224-90F6-4994C6D9B956}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{73F5A4C9-7EEC-4291-A958-0C8CC4390468}"
+	ProjectSection(SolutionItems) = preProject
+		To Do.txt = To Do.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CommonBlockFinder\CommonBlockFinder.projitems*{0a90dfee-7699-41a3-88eb-02e0b2a73ee4}*SharedItemsImports = 13

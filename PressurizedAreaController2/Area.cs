@@ -18,74 +18,53 @@ namespace IngameScript
 {
     partial class Program
     {
-        public class Area : StatusReporter
+        public class Area
         {
+            string tagName;
             List<Access> listOfAccessPoints;
             List<IMyAirVent> listOfStorageAirVents;
             List<IMyAirVent> listOfSourceAirVents;
             GasTanksManager storageTanksManager;
+            AlertSystemManager<int> alertSystemManager;
 
-            public Area(List<Access> accessPoints, List<IMyAirVent> sourceAirVents, List<IMyAirVent> storageAirVents = null, GasTanksManager storageTanksManager = null, StatusReport statusReport = null)
+            public Area(List<Access> accessPoints, List<IMyAirVent> sourceAirVents, List<IMyAirVent> storageAirVents = null,
+                GasTanksManager storageTanksManager = null, AlertSystemManager<int> alertSystemManager = null)
             {
                 listOfAccessPoints = accessPoints;
-                AccessPointsSetStatusReport(statusReport);
                 listOfStorageAirVents = storageAirVents;
                 listOfSourceAirVents = sourceAirVents;
                 this.storageTanksManager = storageTanksManager;
-                storageTanksManager.SetStatusReport(statusReport);
+                this.alertSystemManager = alertSystemManager;
             }
 
-            private void AccessPointsSetStatusReport(StatusReport statusReport)
+            public class NoAccessPointsException : Exception
             {
-                if (listOfAccessPoints == null) return;
-                foreach (Access access in listOfAccessPoints)
-                {
-                    access.SetStatusReport(statusReport);
-                }
+                public NoAccessPointsException() : base("Area: No access points in list.") { } 
             }
 
-            protected bool ValidAccessList()
+            protected void ValidateAccessList()
             {
-                if (listOfAccessPoints == null)
-                {
-                    ReportItem("Area: listOfAccessPoints == null!", StatusReport.Type.ERROR);
-                    return false;
-                }
-                else if (listOfAccessPoints.Count < 1)
-                {
-                    ReportItem("Area: listOfAccessPoints is empty", StatusReport.Type.ERROR);
-                    return false;
-                }
-                else return true;
+                if (listOfAccessPoints == null) throw new NullReferenceException("Area: Access point list has null value.");
+                if (listOfAccessPoints.Count < 1) throw new NoAccessPointsException();
             }
 
-            protected bool ValidAccess(int index)
+            protected void ValidateAccess(int index)
             {
-                if (index < 0 || index >= listOfAccessPoints.Count)
-                {
-                    ReportItem("Area: access index out of range.", StatusReport.Type.ERROR);
-                    return false;
-                }
-                else if (listOfAccessPoints[index] == null)
-                {
-                    ReportItem("Area: access == null!", StatusReport.Type.ERROR);
-                    return false;
-                }
-                else return true;
+                if (listOfAccessPoints[index] == null) throw new NullReferenceException("Area: Access point had null value.");
             }
 
             public int AccessPointCount
             {
                 get
                 {
-                    if (!ValidAccessList()) return -1;
+                    ValidateAccessList();
                     return listOfAccessPoints.Count;
                 }
             }
 
             public Access AccessPoint(int i)
             {
-                if (!ValidAccessList() || !ValidAccess(i)) return null;
+                ValidateAccessList(); ValidateAccess(i);
                 return listOfAccessPoints[i];
             }
 
@@ -93,7 +72,7 @@ namespace IngameScript
             {
                 get
                 {
-                    if (listOfSourceAirVents == null) return -1;
+                    if (listOfSourceAirVents == null) return -1; 
                     return listOfStorageAirVents.Count;
                 }
             }
@@ -124,6 +103,11 @@ namespace IngameScript
             public GasTanksManager StorageTanksManager
             {
                 get { return storageTanksManager; }
+            }
+
+            public AlertSystemManager<int> AlertSystemManager
+            {
+                get { return alertSystemManager; }
             }
         }
     }

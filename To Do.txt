@@ -1,0 +1,6 @@
+To Do List
+
+NameFindAndReplace - Add find substring methods (one, group, list)
+TagManager - uses NameFindAndReplace to add, change and find blocks with tags (one, group, list)
+CustomDataSerializer - serializes data to be stored in a blocks custom data
+Refactor PressurizedAreaController and related classes to use CustomDataSerializer
