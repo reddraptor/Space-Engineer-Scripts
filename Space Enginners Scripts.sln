@@ -51,6 +51,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CommonBlockFinder", "Common
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CommandParser", "CommandParser\CommandParser.shproj", "{8624FAEE-1954-4224-90F6-4994C6D9B956}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShuttleBayScript", "ShuttleBayScript\ShuttleBayScript.csproj", "{7608EE35-598B-4398-8B53-ED5F3474C5FC}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CommonBlockFinder\CommonBlockFinder.projitems*{0a90dfee-7699-41a3-88eb-02e0b2a73ee4}*SharedItemsImports = 13
@@ -67,6 +69,11 @@ Global
 		Shared\GasTanksManager\GasTanksManager.projitems*{6ae0b40b-f6ad-4882-ac90-6b2d86beb86a}*SharedItemsImports = 4
 		StatusReport\StatusReport.projitems*{6ae0b40b-f6ad-4882-ac90-6b2d86beb86a}*SharedItemsImports = 4
 		StatusReport\StatusReport.projitems*{70d7faa0-8bef-48c8-843f-cb1082d42fde}*SharedItemsImports = 4
+		BlockListManager\BlockListManager.projitems*{7608ee35-598b-4398-8b53-ed5f3474c5fc}*SharedItemsImports = 4
+		PressurizedAreaController\PressurizedAreaController.projitems*{7608ee35-598b-4398-8b53-ed5f3474c5fc}*SharedItemsImports = 4
+		Shared\AlertSystem\AlertSystem.projitems*{7608ee35-598b-4398-8b53-ed5f3474c5fc}*SharedItemsImports = 4
+		Shared\GasTanksManager\GasTanksManager.projitems*{7608ee35-598b-4398-8b53-ed5f3474c5fc}*SharedItemsImports = 4
+		StatusReport\StatusReport.projitems*{7608ee35-598b-4398-8b53-ed5f3474c5fc}*SharedItemsImports = 4
 		CommandParser\CommandParser.projitems*{8624faee-1954-4224-90f6-4994c6d9b956}*SharedItemsImports = 13
 		PressurizedAreaController\PressurizedAreaController.projitems*{8d50cd5b-0008-49c8-89cc-4b4f3f4cdf91}*SharedItemsImports = 13
 		Shared\GasTanksManager\GasTanksManager.projitems*{a6b98eb8-ed09-490d-b950-89325256f1dc}*SharedItemsImports = 4
@@ -180,6 +187,13 @@ Global
 		{3820C734-7295-4CD4-996D-131572FCFBCA}.Release|Any CPU.Build.0 = Debug|x64
 		{3820C734-7295-4CD4-996D-131572FCFBCA}.Release|x64.ActiveCfg = Debug|x64
 		{3820C734-7295-4CD4-996D-131572FCFBCA}.Release|x64.Build.0 = Debug|x64
+		{7608EE35-598B-4398-8B53-ED5F3474C5FC}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{7608EE35-598B-4398-8B53-ED5F3474C5FC}.Debug|x64.ActiveCfg = Debug|x64
+		{7608EE35-598B-4398-8B53-ED5F3474C5FC}.Debug|x64.Build.0 = Debug|x64
+		{7608EE35-598B-4398-8B53-ED5F3474C5FC}.Release|Any CPU.ActiveCfg = Debug|x64
+		{7608EE35-598B-4398-8B53-ED5F3474C5FC}.Release|Any CPU.Build.0 = Debug|x64
+		{7608EE35-598B-4398-8B53-ED5F3474C5FC}.Release|x64.ActiveCfg = Debug|x64
+		{7608EE35-598B-4398-8B53-ED5F3474C5FC}.Release|x64.Build.0 = Debug|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
